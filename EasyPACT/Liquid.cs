@@ -1,0 +1,152 @@
+﻿namespace EasyPACT
+{
+    abstract class Liquid
+    {
+        /// <summary>
+        /// Температура кипения жидкости в градусах Цельсия.
+        /// </summary>
+        protected double _BoilingPoint;
+        /// <summary>
+        /// Плотность жидкости в килограммах на кубометр.
+        /// </summary>
+        protected double _Density;
+        /// <summary>
+        /// Идентификационный номер для поиска в БД.
+        /// </summary>
+        protected string _Id;
+        /// <summary>
+        /// Молярная масса жидкости в килограммах на киломоль.
+        /// </summary>
+        protected double _MolarMass;
+        /// <summary>
+        /// Название жидкости.
+        /// </summary>
+        protected string _Name;
+        /// <summary>
+        /// Давление, оказываемое на жидкость, в мм рт. ст.
+        /// </summary>
+        protected double _Pressure;
+        /// <summary>
+        /// Температура жидкости в градусах Цельсия.
+        /// </summary>
+        protected double _Temperature;
+        /// <summary>
+        /// Динамический коэффициент вязкости жидкости в Па*с
+        /// </summary>
+        protected double _ViscosityDynamic;
+
+        private Liquid() // Стандартный конструктор
+        {
+        }
+
+        /// <summary>
+        /// Данный класс описывает физические свойства 
+        /// жидкостей, их зависимости друг от друга.
+        /// </summary>
+        /// <param name="id">Идентификатор жидкости.</param>
+        /// <param name="t">Температура жидкости, в градусах Цельсия.</param>
+        /// <param name="p">Давление, оказываемое на жидкость, в мм рт. ст.</param>
+        protected Liquid(string id, double t, double p)
+        {
+            if (t <= -273.15)
+            {
+                throw new Exceptions.InvalidTemperatureException("Температура не может быть ниже абсолютного нуля либо равна ему!");
+            }
+            if (p <= 0)
+            {
+                throw new Exceptions.InvalidPressureException("Давление не может быть ниже нуля либо равно ему!");
+            }
+            this._Id = id;
+            this._Name = Calculation.Name(this);
+            this._Temperature = t;
+            this._Pressure = p;
+        }
+
+        /// <summary>
+        /// Возвращает температуру кипения жидкости.
+        /// </summary>
+        public double BoilingPoint
+        {
+            get { return this._BoilingPoint; }
+        }
+        /// <summary>
+        /// Плотность жидкости при текущей температуре.
+        /// </summary>
+        public double Density
+        {
+            get { return this._Density; }
+        }
+        /// <summary>
+        /// Идентификационный номер жидкости. 
+        /// </summary>
+        public string Id
+        {
+            get { return this._Id; }
+        }
+        /// <summary>
+        /// Молярная масса жидкости.
+        /// </summary>
+        public double MolarMass
+        {
+            get { return this._MolarMass; }
+        }
+        /// <summary>
+        /// Название жидкости.
+        /// </summary>
+        public string Name
+        {
+            get { return this._Name; }
+        }
+        /// <summary>
+        /// Возвращает давление жидкости в мм рт. ст.
+        /// </summary>
+        public double Pressure
+        {
+            get { return this._Pressure; }
+            set
+            {
+                this.SetPressure(value);
+            }
+        }
+        /// <summary>
+        /// Возвращает температуру жидкости в градусах Цельсия.
+        /// </summary>
+        public double Temperature
+        {
+            get { return this._Temperature; }
+            set
+            {
+                this.SetTemperature(value);
+            }
+        }
+        /// <summary>
+        /// Возвращает динамический коэффициент вязкости жидкости при текущей температуре.
+        /// </summary>
+        public double ViscosityDynamic
+        {
+            get { return this._ViscosityDynamic; }
+        }
+        /// <summary>
+        /// Возвращает динамический коэффициент вязкости жидкости при текущей температуре.
+        /// </summary>
+        public double ViscosityKinematic
+        {
+            get { return this._ViscosityDynamic / this._Density; }
+        }
+
+        /// <summary>
+        /// Вычисляет молярную массу жидкости.
+        /// </summary>
+        public abstract void SetMolarMass();
+        /// <summary>
+        /// Задает давление на жидкость и пересчитывает ее параметры.
+        /// </summary>
+        /// <param name="pressure">Давление, действующее на жидкость, в мм рт. ст.</param>
+        protected abstract void SetPressure(double pressure);
+        /// <summary>
+        /// Задает температуру жидкости и пересчитывает ее параметры.
+        /// </summary>
+        /// <param name="temperature">Температура жидкости, в мм рт. ст.</param>
+        protected abstract void SetTemperature(double temperature);
+    }
+}
