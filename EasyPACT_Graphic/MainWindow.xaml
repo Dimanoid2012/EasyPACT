@@ -2,30 +2,21 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
-    <Grid><!--
+    <Grid>
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,12,12,0" Name="Liquid_type" VerticalAlignment="Top" Width="313" SelectionChanged="Liquid_type_SelectionChanged">
             <ComboBoxItem Content="Чистая жидкость" IsSelected="True" />
             <ComboBoxItem Content="Бинарная смесь" />
         </ComboBox>
-        <Label Content="Выберите тип жидкости:" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="Liquid_type_lbl" VerticalAlignment="Top" Width="144" />
         <Label Content="Выберите жидкость:" Height="28" HorizontalAlignment="Left" Margin="34,46,0,0" Name="Liquid_lbl" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="178,46,0,0" Name="Liquid" VerticalAlignment="Top" Width="313" SelectionChanged="Liquid_SelectionChanged" />
-        <Label Content="Параметры жидкости:" Height="28" HorizontalAlignment="Left" Margin="26,80,0,0" Name="Liquid_parameters_lbl" VerticalAlignment="Top" />
-        <Label Content="Давление:" Height="28" HorizontalAlignment="Left" Margin="85,110,0,0" Name="Pressure_lbl" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="178,112,0,0" Name="Pressure_Input" VerticalAlignment="Top" Width="80" TextChanged="Pressure_Input_TextChanged" />
-        <Label Content="Единицы измерения:" HorizontalAlignment="Left" Margin="282,110,0,173" Name="Pressure_Measure_lbl" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="404,112,0,0" Name="Pressure_Measure_Choose" VerticalAlignment="Top" Width="87" SelectionChanged="Pressure_Measure_Choose_SelectionChanged">
+        <Label Content="Параметры жидкости:" Height="28" HorizontalAlignment="Left" Margin="24,80,0,0" Name="Liquid_parameters_lbl" VerticalAlignment="Top" />
+        <Label Content="Давление:" Height="28" HorizontalAlignment="Left" Margin="90,108,0,0" Name="Pressure_lbl" VerticalAlignment="Top" Visibility="Visible" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="178,110,0,0" Name="Pressure_Input" VerticalAlignment="Top" Width="80" KeyDown="Pressure_Input_KeyDown" />
+        <Label Content="Единицы измерения:" HorizontalAlignment="Left" Margin="273,108,0,175" Name="Measure_lbl" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="404,110,0,0" Name="Measure_choose" VerticalAlignment="Top" Width="87" SelectionChanged="Measure_choose_SelectionChanged">
             <ComboBoxItem Content="МПа" IsSelected="True" />
             <ComboBoxItem Content="мм.рт.ст." />
             <ComboBoxItem Content="бар" />
         </ComboBox>
-        <Label Content="Температура:" Height="28" HorizontalAlignment="Left" Margin="69,0,0,139" Name="Temperature_lbl" VerticalAlignment="Bottom" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="178,146,0,0" Name="Temperature_Input" VerticalAlignment="Top" Width="80" TextChanged="Temperature_Input_TextChanged" />
-        <Label Content="Единицы измерения:" Height="28" HorizontalAlignment="Left" Margin="282,144,0,0" Name="Temperature_Measure_lbl" VerticalAlignment="Top" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="404,146,0,0" Name="Temperature_Measure_Choose" VerticalAlignment="Top" Width="87" SelectionChanged="Temperature_Measure_Choose_SelectionChanged">
-            <ComboBoxItem Content="Цельсий" IsSelected="True" />
-            <ComboBoxItem Content="Кельвин" />
-        </ComboBox>
-        <Label Content="Добавление жидкости." Height="28" HorizontalAlignment="Left" Margin="26,178,0,0" Name="Liquid_Add" VerticalAlignment="Top" Visibility="Collapsed" />-->
     </Grid>
 </Window>
