@@ -4,10 +4,10 @@
     /// Данный класс описывает физические свойства 
     /// жидкостей, их зависимости друг от друга
     /// </summary>
-    class LiquidPure: Liquid
+    public class LiquidPure: Liquid
     {
         /// <summary>
-        /// 
+        /// Чистая жидкость.
         /// </summary>
         /// <param name="id">Идентификационный номер жидкости.</param>
         /// <param name="t">Температура жидкости, в градусах Цельсия.</param>

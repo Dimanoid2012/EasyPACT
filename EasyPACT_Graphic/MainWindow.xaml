@@ -11,7 +11,7 @@
         <Label Content="Выберите жидкость:" Height="28" HorizontalAlignment="Left" Margin="34,46,0,0" Name="Liquid_lbl" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="178,46,0,0" Name="Liquid" VerticalAlignment="Top" Width="313" SelectionChanged="Liquid_SelectionChanged" />
         <Label Content="Параметры жидкости:" Height="28" HorizontalAlignment="Left" Margin="24,80,0,0" Name="Liquid_parameters_lbl" VerticalAlignment="Top" />
-        <Label Content="Давление:" Height="28" HorizontalAlignment="Left" Margin="90,108,0,0" Name="Pressure_lbl" VerticalAlignment="Top" />
+        <Label Content="Давление:" Height="28" HorizontalAlignment="Left" Margin="90,108,0,0" Name="Pressure_lbl" VerticalAlignment="Top" Visibility="Visible" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="178,110,0,0" Name="Pressure_Input" VerticalAlignment="Top" Width="80" KeyDown="Pressure_Input_KeyDown" />
         <Label Content="Единицы измерения:" HorizontalAlignment="Left" Margin="273,108,0,175" Name="Measure_lbl" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="404,110,0,0" Name="Measure_choose" VerticalAlignment="Top" Width="87" SelectionChanged="Measure_choose_SelectionChanged">

@@ -8,7 +8,7 @@ namespace EasyPACT
     /// Данный класс позволяет вычислять любые характеристики
     /// жидкостей, трубопроводов, потоков и т.д.
     /// </summary>
-    static class Calculation
+    public static class Calculation
     {
         static private double LinearInterpolation(List<List<double>> list, double value)
         {

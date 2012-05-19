@@ -1,4 +1,4 @@
-﻿    using System;
+﻿        using System;
 
 namespace EasyPACT
 {
@@ -6,7 +6,7 @@ namespace EasyPACT
     /// Данный класс описывает материал, размеры
     /// и прочие особенности трубопровода произвольного сечения.
     /// </summary>
-    class Pipeline
+    public class Pipeline
     {
         /// <summary>
         /// Коэффициент А.

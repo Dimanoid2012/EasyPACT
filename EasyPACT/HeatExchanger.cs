@@ -3,7 +3,7 @@
     /// <summary>
     /// Класс, описывающий теплообменник типа "труба в трубе"
     /// </summary>
-    class HeatExchangerPipeInPipe
+    public class HeatExchangerPipeInPipe
     {
         protected LiquidInPipeline _InPipe;
         protected LiquidInPipeline _ExPipe;

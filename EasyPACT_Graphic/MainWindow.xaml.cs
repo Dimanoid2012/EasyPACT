@@ -28,6 +28,7 @@ namespace EasyPACT_Graphic
                 Liquid.Items.Add(a);
             }
             Liquid.SelectedIndex = 0;
+            
 
         }
 

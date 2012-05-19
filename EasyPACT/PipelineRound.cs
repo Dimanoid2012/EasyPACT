@@ -5,7 +5,7 @@ namespace EasyPACT
     /// Данный класс описывает материал, размеры
     /// и прочие особенности трубопровода круглого сечения.
     /// </summary>
-    class PipelineRound:Pipeline
+    public class PipelineRound:Pipeline
     {
         /// <summary>
         /// Данный класс описывает материал, размеры

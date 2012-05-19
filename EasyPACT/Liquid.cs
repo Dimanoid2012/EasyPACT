@@ -1,6 +1,6 @@
 ﻿namespace EasyPACT
 {
-    abstract class Liquid
+    public abstract class Liquid
     {
         /// <summary>
         /// Температура кипения жидкости в градусах Цельсия.

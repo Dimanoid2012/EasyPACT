@@ -8,7 +8,7 @@ namespace EasyPACT
     /// <summary>
     /// Класс, описывающий центробежный насос.
     /// </summary>
-    class CentrifugalPump
+    public class CentrifugalPump
     {
         /// <summary>
         /// Марка насоса.

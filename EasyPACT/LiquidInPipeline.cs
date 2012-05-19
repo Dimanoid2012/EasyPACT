@@ -5,7 +5,7 @@ namespace EasyPACT
     /// <summary>
     /// Данный класс описывает поведение жидкости в трубопроводе.
     /// </summary>
-    class LiquidInPipeline
+    public class LiquidInPipeline
     {
         /// <summary>
         /// Режим течения жидкости:
