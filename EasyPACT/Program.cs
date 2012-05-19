@@ -1,14 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EasyPACT
 {
@@ -51,10 +42,10 @@ namespace EasyPACT
                                  lipOut.LossOfPressureUponLocalResistances() + lipOut.LossOfPressureUponLifting(8.4) +
                                  lipOut.Liquid.Pressure - lipIn.Liquid.Pressure;
             Console.WriteLine("Гидравлическое сопротивление ТП: {0} Па", lossOfPressure);*/
-            var win = new Window();
+            var pump = new CentrifugalPump(5);
             
 
-            //Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace EasyPACT
     /// Класс, описывающий систему целиком и обеспечивающий
     /// взаимодействие между объектами. Одиночка.
     /// </summary>
-    sealed class Network
+    public sealed class Network
     {
         /// <summary>
         /// Единственный объект класса Network.
@@ -28,6 +28,10 @@ namespace EasyPACT
         /// Насос.
         /// </summary>
         private CentrifugalPump _pump;
+        /// <summary>
+        /// Производительность сети.
+        /// </summary>
+        //private double _massFlow;
 
 
         private Network() { }
