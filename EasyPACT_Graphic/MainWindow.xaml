@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
-    <Grid><!--
+    <Grid>
+        <!--
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,12,12,0" Name="Liquid_type" VerticalAlignment="Top" Width="313" SelectionChanged="Liquid_type_SelectionChanged">
             <ComboBoxItem Content="Чистая жидкость" IsSelected="True" />
             <ComboBoxItem Content="Бинарная смесь" />

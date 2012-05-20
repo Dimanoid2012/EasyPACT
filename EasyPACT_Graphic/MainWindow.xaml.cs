@@ -48,25 +48,26 @@ namespace EasyPACT_Graphic
             {
                 Name = "Liquid_type_lbl",
                 Content = "Выберите тип жидкости:",
-                Width = 144,
+                Width = 150,
                 Height = 28,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(12, 12, 0, 0)
+                Margin = new Thickness(280, 150, 0, 0)
             };
 
             MyComboBox Liquid_type = new MyComboBox()
             {
                 Name = "Liquid_type",
-                Width = 313,
+                Width = 160,
                 Height = 23,
-                HorizontalAlignment = HorizontalAlignment.Right,
+                HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(0, 12, 12, 0),
-                SelectedItem = 0
+                Margin = new Thickness(446, 150, 12, 0),
+                
             };
             Liquid_type.Items.Add("Чистая жидкость");
             Liquid_type.Items.Add("Бинарная смесь");
+            Liquid_type.SelectedIndex = 0;
             Liquid_type.SelectionChanged += Liquid_type_SelectionChanged;
 
             MyLabel Liquid_lbl = new MyLabel()
@@ -76,17 +77,17 @@ namespace EasyPACT_Graphic
                 Height = 28,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(34, 46, 0, 0)
+                Margin = new Thickness(302, 184, 0, 0)
             };
 
             MyComboBox Liquid = new MyComboBox()
             {
                 Name = "Liquid",
-                Width = 313,
+                Width = 160,
                 Height = 23,
-                HorizontalAlignment = HorizontalAlignment.Right,
+                HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(178, 46, 0, 0),
+                Margin = new Thickness(446, 184, 0, 0),
             };
             foreach (var a in Database.Query("select name from liquid_list")[0])
             {
@@ -105,7 +106,7 @@ namespace EasyPACT_Graphic
                 Height = 28,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(26, 80, 0, 0)
+                Margin = new Thickness(295, 230, 0, 0)
             };
 
             MyLabel Pressure_lbl = new MyLabel()
@@ -116,38 +117,38 @@ namespace EasyPACT_Graphic
                 Height = 28,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(85, 110, 0, 0)
+                Margin = new Thickness(355, 256, 0, 0)
             };
 
             MyTextBox Pressure_Input = new MyTextBox()
             {
                 Name = "Pressure_Input",
-                Width = 80,
+                Width = 78,
                 Height = 23,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(178,112,0,0)
+                Margin = new Thickness(446, 256, 0, 0)
             };
             Pressure_Input.TextChanged += Pressure_Input_TextChanged;
-
+            /*
             MyLabel Pressure_Measure_lbl = new MyLabel()
             {
                 Name = "Pressure_Measure_lbl",
                 Content = "Единицы измерения:",
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(282, 110, 0, 173)
+                Margin = new Thickness(580, 206, 0, 173)
             };
-
+            */
             MyComboBox Pressure_Measure_Choose = new MyComboBox()
             {
                 Name = "Pressure_Measure_Choose",
-                Width = 87,
+                Width = 80,
                 Height = 23,
-                HorizontalAlignment = HorizontalAlignment.Right,
+                HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(404, 112, 0, 0),
-                SelectedItem = 0
+                Margin = new Thickness(527, 256, 0, 0),
+                SelectedIndex = 0
             };
             Pressure_Measure_Choose.Items.Add("МПа");
             Pressure_Measure_Choose.Items.Add("мм.рт.ст.");
@@ -161,42 +162,66 @@ namespace EasyPACT_Graphic
                 Height = 28,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(69, 0, 0, 139)
+                Margin = new Thickness(340, 282, 0, 0)
             };
 
             MyTextBox Temperature_Input = new MyTextBox()
             {
                 Name = "Temperature_Input",
-                Width = 80,
+                Width = 78,
                 Height = 23,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(178, 146, 0, 0)
+                Margin = new Thickness(446, 282, 0, 0)
             };
             Temperature_Input.TextChanged += Temperature_Input_TextChanged;
-
+            /*
             MyLabel Temperature_Measure_lbl = new MyLabel()
             {
                 Name = "Temperature_Measure_lbl",
                 Content = "Единицы измерения:",
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(282, 144, 0, 0)
+                Margin = new Thickness(580, 232, 0, 0)
             };
-
+            */
             MyComboBox Temperature_Measure_Choose = new MyComboBox()
             {
                 Name = "Temperature_Measure_Choose",
-                Width = 87,
+                Width = 80,
                 Height = 23,
-                HorizontalAlignment = HorizontalAlignment.Right,
+                HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(404, 146, 0, 0),
-                SelectedItem = 0
+                Margin = new Thickness(527, 282, 0, 0),
+                SelectedIndex = 0
             };
             Temperature_Measure_Choose.Items.Add("Цельсий");
             Temperature_Measure_Choose.Items.Add("Кельвин");;
             Temperature_Measure_Choose.SelectionChanged += Temperature_Measure_Choose_SelectionChanged;
+
+            MyButton Next = new MyButton()
+            {
+                Name = "Next",
+                Width = 100,
+                Height = 30,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Margin = new Thickness(0,0,30,30),
+                Content = "Далее"
+            };
+            Next.Click += Next_Click;
+
+            MyButton Help = new MyButton()
+            {
+                Name = "Help",
+                Width = 100,
+                Height = 30,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Margin = new Thickness(30, 0, 0, 30),
+                Content = "Помощь"
+            };
+            Help.Click += Help_Click;
 
             Grid kontainer = new Grid();
             kontainer.Children.Add(Liquid_type_lbl);
@@ -206,14 +231,18 @@ namespace EasyPACT_Graphic
             kontainer.Children.Add(Liquid_parameters_lbl);
             kontainer.Children.Add(Pressure_lbl);
             kontainer.Children.Add(Pressure_Input);
-            kontainer.Children.Add(Pressure_Measure_lbl);
+            //kontainer.Children.Add(Pressure_Measure_lbl);
             kontainer.Children.Add(Pressure_Measure_Choose);
             kontainer.Children.Add(Temperature_lbl);
             kontainer.Children.Add(Temperature_Input);
-            kontainer.Children.Add(Temperature_Measure_lbl);
+            //kontainer.Children.Add(Temperature_Measure_lbl);
             kontainer.Children.Add(Temperature_Measure_Choose);
+            kontainer.Children.Add(Next);
+            kontainer.Children.Add(Help);
 
             this.Content = kontainer;
+            this.Width = 750;
+            this.Height = 500;
         }
 
         private void Liquid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -226,11 +255,13 @@ namespace EasyPACT_Graphic
             MyLabel Pressure_lbl = sender as MyLabel;
             MyTextBox Pressure_Input = sender as MyTextBox;
             MyLabel Pressure_Measure_lbl = sender as MyLabel;
-            MyComboBox Pressure_Measure_Choose = sender as MyComboBox;
+            //MyComboBox Pressure_Measure_Choose = sender as MyComboBox;
             MyLabel Temperature_lbl = sender as MyLabel;
             MyTextBox Temperature_Input = sender as MyTextBox;
-            MyLabel Temperature_Measure_lbl = sender as MyLabel;
+            //MyLabel Temperature_Measure_lbl = sender as MyLabel;
             MyComboBox Temperature_Measure_Choose = sender as MyComboBox;
+            MyButton Next = sender as MyButton;
+            MyButton Help = sender as MyButton;
 
             /*
             if ((Liquid_type.SelectedIndex == 0) && (Liquid.SelectedIndex == Liquid.Items.Count - 1) )
@@ -261,11 +292,13 @@ namespace EasyPACT_Graphic
             MyLabel Pressure_lbl = sender as MyLabel;
             MyTextBox Pressure_Input = sender as MyTextBox;
             MyLabel Pressure_Measure_lbl = sender as MyLabel;
-            MyComboBox Pressure_Measure_Choose = sender as MyComboBox;
+            //MyComboBox Pressure_Measure_Choose = sender as MyComboBox;
             MyLabel Temperature_lbl = sender as MyLabel;
             MyTextBox Temperature_Input = sender as MyTextBox;
-            MyLabel Temperature_Measure_lbl = sender as MyLabel;
+            //MyLabel Temperature_Measure_lbl = sender as MyLabel;
             MyComboBox Temperature_Measure_Choose = sender as MyComboBox;
+            MyButton Next = sender as MyButton;
+            MyButton Help = sender as MyButton;
 
             if (Liquid == null)
                 return;
@@ -328,7 +361,15 @@ namespace EasyPACT_Graphic
 
         }
 
+        private void Next_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Выбран пункт Далее");
+        }
 
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Выбран пункт Помощь");
+        }
         
     }
 }
