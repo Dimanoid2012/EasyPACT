@@ -96,7 +96,7 @@ namespace EasyPACT_Graphic
             Liquid.Items.Add("Добавить жидкость...");
             Liquid.SelectedIndex = 0;
 
-            Liquid_type.SelectionChanged += Liquid_type_SelectionChanged;
+            Liquid.SelectionChanged += Liquid_SelectionChanged;
 
             MyLabel Liquid_parameters_lbl = new MyLabel()
             {
@@ -247,21 +247,8 @@ namespace EasyPACT_Graphic
 
         private void Liquid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MyLabel Liquid_type_lbl = sender as MyLabel;
-            MyComboBox Liquid_type = sender as MyComboBox;
-            MyLabel Liquid_lbl = sender as MyLabel;
-            MyComboBox Liquid = sender as MyComboBox;
-            MyLabel Liquid_parameters_lbl = sender as MyLabel;
-            MyLabel Pressure_lbl = sender as MyLabel;
-            MyTextBox Pressure_Input = sender as MyTextBox;
-            MyLabel Pressure_Measure_lbl = sender as MyLabel;
-            //MyComboBox Pressure_Measure_Choose = sender as MyComboBox;
-            MyLabel Temperature_lbl = sender as MyLabel;
-            MyTextBox Temperature_Input = sender as MyTextBox;
-            //MyLabel Temperature_Measure_lbl = sender as MyLabel;
-            MyComboBox Temperature_Measure_Choose = sender as MyComboBox;
-            MyButton Next = sender as MyButton;
-            MyButton Help = sender as MyButton;
+            var lb = sender as MyComboBox;
+            MessageBox.Show(lb.SelectedIndex.ToString());
 
             /*
             if ((Liquid_type.SelectedIndex == 0) && (Liquid.SelectedIndex == Liquid.Items.Count - 1) )
@@ -284,7 +271,7 @@ namespace EasyPACT_Graphic
 
         private void Liquid_type_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MyLabel Liquid_type_lbl = sender as MyLabel;
+            /*MyLabel Liquid_type_lbl = sender as MyLabel;
             MyComboBox Liquid_type = sender as MyComboBox;
             MyLabel Liquid_lbl = sender as MyLabel;
             MyComboBox Liquid = sender as MyComboBox;
@@ -298,7 +285,13 @@ namespace EasyPACT_Graphic
             //MyLabel Temperature_Measure_lbl = sender as MyLabel;
             MyComboBox Temperature_Measure_Choose = sender as MyComboBox;
             MyButton Next = sender as MyButton;
-            MyButton Help = sender as MyButton;
+            MyButton Help = sender as MyButton;*/
+            var Liquid_type = sender as MyComboBox;
+            var grid = this.Content as Grid;
+            var lbl = grid.Children[0] as MyLabel;
+            var asd = grid.Children.OfType<MyComboBox>().First(a => a.Name == "Liquid_type");
+            //Application.Current.MainWindow.
+            /*
 
             if (Liquid == null)
                 return;
@@ -338,7 +331,7 @@ namespace EasyPACT_Graphic
                 }
                 Liquid.Items.Add("Добавить смесь...");
                 Liquid.SelectedIndex = 0;
-            }
+            }*/
         }
 
         private void Pressure_Input_TextChanged(object sender, TextChangedEventArgs e)
