@@ -58,15 +58,7 @@ namespace EasyPACT
         /// <summary>
         /// Центробежный насос.
         /// </summary>
-        /*/// <param name="brand">Марка насоса.</param>
-        /// <param name="Q">Производительность насоса в м3/с.</param>
-        /// <param name="H">Напор насоса в м столба жидкости.</param>
-        /// <param name="n">Частота вращения вала в об/с.</param>
-        /// <param name="nPump">КПД насоса.</param>
-        /// <param name="motorType">Тип электродвигателя.</param>
-        /// <param name="N">Номинальная мощность электродвигателя в кВт.</param>
-        /// <param name="nMotor">КПД электродвигателя.</param>*/
-        //public CentrifugalPump(string brand, double Q, double H, double n, double nPump, string motorType, double N, double nMotor)
+        /// <param name="id">Идентификатор насоса.</param>
         public CentrifugalPump (int id)
         {
             var list =
@@ -93,6 +85,7 @@ namespace EasyPACT
             this._FrequencyOfRotation = frequency;
             this._Productivity = this._OptimalProductivity*frequency/this._OptimalFrequencyOfRotation;
             this._Pressure = this._OptimalPressure*Math.Pow(frequency/this._OptimalFrequencyOfRotation, 2);
+            Network.Get().SetProductivity(this, this._Productivity);
         }
 
     }
