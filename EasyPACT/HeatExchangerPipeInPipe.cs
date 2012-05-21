@@ -13,7 +13,7 @@
         //protected double _LengthOfPipes;
         protected double _SurfaceArea;
         protected bool _IsContraflow;
-        private HeatExchangerPipeInPipe() { }
+
         protected HeatExchangerPipeInPipe(LiquidInPipeline inPipe, LiquidInPipeline exPipe, bool isContraflow)
         {
             this._InPipe = inPipe;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace EasyPACT
+﻿namespace EasyPACT
 {
     /// <summary>
     /// Класс, описывающий систему целиком и обеспечивающий
@@ -34,6 +29,11 @@ namespace EasyPACT
         /// Насос.
         /// </summary>
         public CentrifugalPump Pump { get; private set; }
+
+        /// <summary>
+        /// Теплообменник.
+        /// </summary>
+        public HeatExchangerPipe HeatExchanger { get; private set; }
         /// <summary>
         /// Производительность сети в м3/с.
         /// </summary>

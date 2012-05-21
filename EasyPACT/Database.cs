@@ -74,7 +74,6 @@ namespace EasyPACT
         {
             var dataSet = new DataSet("answer");
             adapter.Fill(dataSet);
-            //dataSet.Container.Add();
             Close();
             var list = new List<List<string>>();
             var schema = XDocument.Parse(dataSet.GetXml());
