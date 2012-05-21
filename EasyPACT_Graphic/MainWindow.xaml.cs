@@ -18,77 +18,25 @@ namespace EasyPACT_Graphic
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
+    /// 
     public partial class MainWindow : Window
     {
-        public class MyLabel : Label
-        {
-
-        }
-
-        public class MyButton : Button
-        {
-
-        }
-
-        public class MyComboBox : ComboBox
-        {
-
-        }
-
-        public class MyTextBox : TextBox
-        {
-            
-        }
-
         public MainWindow()
         {
             InitializeComponent();
 
-            MyLabel Liquid_type_lbl = new MyLabel()
-            {
-                Name = "Liquid_type_lbl",
-                Content = "Выберите тип жидкости:",
-                Width = 150,
-                Height = 28,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(280, 150, 0, 0)
-            };
+            MyLabel Liquid_type_lbl = new MyLabel("Liquid_type_lbl", 150, 280, 150, 0, 0, "Выберите тип жидкости:");
 
-            MyComboBox Liquid_type = new MyComboBox()
-            {
-                Name = "Liquid_type",
-                Width = 160,
-                Height = 23,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(446, 150, 12, 0),
-                
-            };
+            MyComboBox Liquid_type = new MyComboBox("Liquid_type", 160, 446, 150, 12, 0);
             Liquid_type.Items.Add("Чистая жидкость");
             Liquid_type.Items.Add("Бинарная смесь");
             Liquid_type.SelectedIndex = 0;
             Liquid_type.SelectionChanged += Liquid_type_SelectionChanged;
 
-            MyLabel Liquid_lbl = new MyLabel()
-            {
-                Name = "Liquid_lbl",
-                Content = "Выберите жидкость:",
-                Height = 28,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(302, 184, 0, 0)
-            };
+            MyLabel Liquid_lbl = new MyLabel("Liquid_lbl", 302, 184, 0, 0,"Выберите жидкость:");
 
-            MyComboBox Liquid = new MyComboBox()
-            {
-                Name = "Liquid",
-                Width = 160,
-                Height = 23,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(446, 184, 0, 0),
-            };
+            MyComboBox Liquid = new MyComboBox("Liquid", 160, 446, 184, 0, 0);
+
             foreach (var a in Database.Query("select name from liquid_list")[0])
             {
                 Liquid.Items.Add(a);
@@ -98,123 +46,47 @@ namespace EasyPACT_Graphic
 
             Liquid.SelectionChanged += Liquid_SelectionChanged;
 
-            MyLabel Liquid_parameters_lbl = new MyLabel()
-            {
-                Name = "Liquid_parameters_lbl",
-                Content = "Параметры жидкости:",
-                Width = 144,
-                Height = 28,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(295, 230, 0, 0)
-            };
+            MyLabel Liquid_parameters_lbl = new MyLabel("Liquid_parameters_lbl", 144, 295, 230, 0, 0,"Параметры жидкости:");
 
-            MyLabel Pressure_lbl = new MyLabel()
-            {
-                Name = "Pressure_lbl",
-                Content = "Давление:",
-                Width = 144,
-                Height = 28,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(355, 256, 0, 0)
-            };
+            MyLabel Pressure_lbl = new MyLabel("Pressure_lbl", 144, 355, 256, 0, 0, "Давление:");
 
-            MyTextBox Pressure_Input = new MyTextBox()
-            {
-                Name = "Pressure_Input",
-                Width = 78,
-                Height = 23,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(446, 256, 0, 0)
-            };
+            MyTextBox Pressure_Input = new MyTextBox("Pressure_Input", 78, 446, 256, 0, 0);
             Pressure_Input.TextInput += Pressure_Input_TextInput;
 
-            MyComboBox Pressure_Measure_Choose = new MyComboBox()
-            {
-                Name = "Pressure_Measure_Choose",
-                Width = 80,
-                Height = 23,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(527, 256, 0, 0),
-                SelectedIndex = 0
-            };
+            MyComboBox Pressure_Measure_Choose = new MyComboBox("Pressure_Measure_Choose", 80, 527, 256, 0, 0);
+            Pressure_Measure_Choose.SelectedIndex = 0;
             Pressure_Measure_Choose.Items.Add("МПа");
             Pressure_Measure_Choose.Items.Add("мм.рт.ст.");
             Pressure_Measure_Choose.Items.Add("бар");
             Pressure_Measure_Choose.SelectionChanged += Pressure_Measure_Choose_SelectionChanged;
 
-            MyLabel Temperature_lbl = new MyLabel()
-            {
-                Name = "Temperature_lbl",
-                Content = "Температура:",
-                Height = 28,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(340, 282, 0, 0)
-            };
+            MyLabel Temperature_lbl = new MyLabel("Temperature_lbl", 340, 282, 0, 0,"Температура:");
 
-            MyTextBox Temperature_Input = new MyTextBox()
-            {
-                Name = "Temperature_Input",
-                Width = 78,
-                Height = 23,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(446, 282, 0, 0)
-            };
+            MyTextBox Temperature_Input = new MyTextBox("Temperature_Input", 78, 446, 282, 0, 0);
             Temperature_Input.TextChanged += Temperature_Input_TextChanged;
-            MyComboBox Temperature_Measure_Choose = new MyComboBox()
-            {
-                Name = "Temperature_Measure_Choose",
-                Width = 80,
-                Height = 23,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(527, 282, 0, 0),
-                SelectedIndex = 0
-            };
+
+            MyComboBox Temperature_Measure_Choose = new MyComboBox("Temperature_Measure_Choose", 80, 527, 282, 0, 0);
+            Temperature_Measure_Choose.SelectedIndex = 0;
             Temperature_Measure_Choose.Items.Add("Цельсий");
             Temperature_Measure_Choose.Items.Add("Кельвин");;
             Temperature_Measure_Choose.SelectionChanged += Temperature_Measure_Choose_SelectionChanged;
 
-            MyButton Next_1 = new MyButton()
-            {
-                Name = "Next_1",
-                Width = 100,
-                Height = 30,
-                HorizontalAlignment = HorizontalAlignment.Right,
-                VerticalAlignment = VerticalAlignment.Bottom,
-                Margin = new Thickness(0,0,30,30),
-                Content = "Далее"
-            };
+            MyButton Next_1 = new MyButton("Next_1", 100, 0, 0, 30, 30, "Далее");
+            Next_1.Height = 30;
+            Next_1.HorizontalAlignment = HorizontalAlignment.Right;
+            Next_1.VerticalAlignment = VerticalAlignment.Bottom;
             Next_1.Click += Next_1_Click;
 
-            MyButton Help = new MyButton()
-            {
-                Name = "Help",
-                Width = 100,
-                Height = 30,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Bottom,
-                Margin = new Thickness(30, 0, 0, 30),
-                Content = "Помощь"
-            };
+            MyButton Help = new MyButton("Help", 100, 30, 0, 0, 30, "Помощь");
+            Help.Height = 30;
+            Help.HorizontalAlignment = HorizontalAlignment.Left;
+            Help.VerticalAlignment = VerticalAlignment.Bottom;
+
             Help.Click += Help_Click;
 
-            MyButton Liquid_Add = new MyButton()
-            {
-                Name = "Liquid_Add",
-                Width = 200,
-                Height = 30,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(300, 320, 0, 0),
-                Content = "Добавление новой жидкости",
-                Visibility = Visibility.Hidden
-            };
+            MyButton Liquid_Add = new MyButton("Liquid_Add", 200, 300, 320, 0, 0,"Добавление новой жидкости");
+            Liquid_Add.Height = 30;
+            Liquid_Add.Visibility = Visibility.Hidden;
             Liquid_Add.Click += Liquid_Add_Click;
 
             Grid container_1 = new Grid();
@@ -242,8 +114,8 @@ namespace EasyPACT_Graphic
         private void Liquid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var grid = this.Content as Grid;
-            var Liquid_type = grid.Children[1] as ComboBox;
-            var Liquid = grid.Children[3] as ComboBox;
+            var Liquid_type = grid.Children[1] as MyComboBox;
+            var Liquid = grid.Children[3] as MyComboBox;
             var Liquid_Add = grid.Children[13] as MyButton;
 
             if ((Liquid_type.SelectedIndex == 0) && (Liquid.SelectedIndex == Liquid.Items.Count - 1))
@@ -323,10 +195,25 @@ namespace EasyPACT_Graphic
             var grid = this.Content as Grid;
             var Pressure_Input = grid.Children[6] as TextBox;
         }
-
+        
         private void Pressure_Measure_Choose_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var grid = this.Content as Grid;
+            var Pressure_Measure_Choose = grid.Children[7] as MyComboBox;
+            var Pressure_Input = grid.Children[6] as MyTextBox;
 
+            if (Pressure_Measure_Choose.SelectedIndex == 0)
+            {
+                var Pressure_In = int.Parse(Pressure_Input.Text);
+                MyLabel proba = new MyLabel("proba", 100, 300, 500, 0, 0, Pressure_In.ToString());
+                grid.Children.Add(proba);
+            }
+
+            if (Pressure_Measure_Choose.SelectedIndex == 2)
+            {
+
+            }
+            
         }
 
         private void Temperature_Input_TextChanged(object sender, TextChangedEventArgs e)
