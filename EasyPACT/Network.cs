@@ -1,4 +1,6 @@
-﻿namespace EasyPACT
+﻿using System;
+
+namespace EasyPACT
 {
     /// <summary>
     /// Класс, описывающий систему целиком и обеспечивающий
@@ -101,8 +103,25 @@
                 liq = new LiquidMix(l.Id, l.MolarFraction, t, l.Pressure);
             }
             var steam = new LiquidPure("10", temperatureSteam, Calculation.Pressure(10, temperatureSteam));
+            liq.Temperature = t;
+            this.Productivity = 32 * 1000 / 3600 / liq.Density; // УДАЛИТЬ
+            var Q = this.Productivity*liq.Density*liq.ThermalCapacity*
+                    (temperatureLiquid - this.ForcingLine.Liquid.Temperature);
+            var G1 = Q/steam.VaporizationHeat;
+            var V1 = G1/steam.Density;
+            var V2 = this.Productivity;
+            var dtMax = steam.Temperature - this.ForcingLine.Liquid.Temperature;
+            var dtMin = steam.Temperature - temperatureLiquid;
+            var dt = (dtMax - dtMin)/Math.Log(dtMax - dtMin);
+            var Kor = 120;
+            var For = Q/Kor/dt;
+            var Re2min = 10000;
+            var w2min = Re2min*liq.ViscosityDynamic/liq.Density/0.021;
+            var nmax = V2/0.785/0.021/0.021/w2min;
+            var list =
+                Database.Query(string.Format("SELECT * FROM XXXIV WHERE surface_area < {0} AND number_of_pipes < {1}",
+                                             For, nmax));
 
-            //var Q = this.Productivity * 
         }
     }
 }

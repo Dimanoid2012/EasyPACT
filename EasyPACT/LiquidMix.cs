@@ -145,6 +145,16 @@ namespace EasyPACT
             this.SetDensity();
             this.SetViscosity();
             this.ThermalCapacity = Calculation.ThermalCapacity(this);
+            this.SetThermalConductivity();
+        }
+        protected double ThermalConductivity30
+        {
+            get { return 4.22e-8*this.ThermalCapacity*this.Density*Math.Pow(this.Density/this.MolarMass, 0.33); }
+        }
+        public void SetThermalConductivity()
+        {
+            var liq = this;
+            this.ThermalConductivity = this.ThermalConductivity30*(1 - 0.002*(this.Temperature - 30));
         }
     }
 }

@@ -45,13 +45,17 @@ namespace EasyPACT
             
             Connect.Close();*/
             //var ht = new HeatExchangerPipe(14);
-            //var liq = new LiquidMix("6,7", 0.28, 20, 760);
+            var liq = new LiquidMix("6,7", 0.28, 20, 760);
+            var pip = new PipelineRound(33, 1, 0.069, 0.003, 50);
+            var lip = new LiquidInPipeline(liq, pip);
+            var pump = new CentrifugalPump(5);
+            var net = Network.Create(lip, lip, pump);
             /*ht.SetLiquidInPipes(liq);
             var liq2 = new LiquidPure("10", 81.45, 1);
             ht.SetLiquidInCase(liq2);
             var liq3 = ht.Run();*/
             //Console.WriteLine("asd".IndexOf('b'));
-            Network.Get().ChooseHeatExchanger(1,2);
+            Network.Get().ChooseHeatExchanger(liq.BoilingPoint,81.45);
             Console.ReadKey();
         }
     }
