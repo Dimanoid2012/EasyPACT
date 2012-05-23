@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace EasyPACT_Graphic
 {
@@ -24,6 +25,10 @@ namespace EasyPACT_Graphic
         public MainWindow()
         {
             InitializeComponent();
+
+            var inf = new CultureInfo(System.Threading.Thread.CurrentThread.CurrentCulture.Name);
+            System.Threading.Thread.CurrentThread.CurrentCulture = inf;
+            inf.NumberFormat.NumberDecimalSeparator = ".";
 
             MyLabel Liquid_type_lbl = new MyLabel("Liquid_type_lbl", 150, 280, 150, 0, 0, "Выберите тип жидкости:");
 
@@ -51,7 +56,7 @@ namespace EasyPACT_Graphic
             MyLabel Pressure_lbl = new MyLabel("Pressure_lbl", 144, 355, 256, 0, 0, "Давление:");
 
             MyTextBox Pressure_Input = new MyTextBox("Pressure_Input", 78, 446, 256, 0, 0);
-            Pressure_Input.TextInput += Pressure_Input_TextInput;
+            Pressure_Input.TextChanged += Pressure_Input_TextChanged;
 
             MyComboBox Pressure_Measure_Choose = new MyComboBox("Pressure_Measure_Choose", 80, 527, 256, 0, 0);
             Pressure_Measure_Choose.SelectedIndex = 0;
@@ -192,47 +197,149 @@ namespace EasyPACT_Graphic
 
         private void Pressure_Input_TextInput(object sender, TextCompositionEventArgs e)
         {
+            /*
             var grid = this.Content as Grid;
             var Pressure_Input = grid.Children[6] as TextBox;
+             */
         }
-        
-        private void Pressure_Measure_Choose_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        //double Pressure_In = -10;
+        private void Pressure_Input_TextChanged(object sender, TextChangedEventArgs e)
         {
+            /*
             var grid = this.Content as Grid;
             var Pressure_Measure_Choose = grid.Children[7] as MyComboBox;
             var Pressure_Input = grid.Children[6] as MyTextBox;
-
-            if (Pressure_Measure_Choose.SelectedIndex == 0)
+            double result = 0;
+            if (double.TryParse(Pressure_Input.Text, out result) == true)
             {
-                var Pressure_In = int.Parse(Pressure_Input.Text);
-                MyLabel proba = new MyLabel("proba", 100, 300, 500, 0, 0, Pressure_In.ToString());
+                MyLabel PressureInputError2 = new MyLabel("PressureInputError2", 200, 0, 40, 0, 0, "норм");
+                grid.Children.Add(PressureInputError2);
+
+                if (Pressure_Input.Text.Length > 0)
+                    Pressure_In = int.Parse(Pressure_Input.Text);
+                else
+                    Pressure_In = -10;
+            }
+            else
+            {
+                MyLabel PressureInputError = new MyLabel("PressureInputError", 200, 0, 0, 0, 0, "Введено неправильное значение.");
+                grid.Children.Add(PressureInputError);
+            }
+            */ 
+            
+            /*
+            if ((Pressure_Measure_Choose.SelectedIndex == 0) && (Pressure_In >= 0))
+            {
+                Pressure_In *= 760;
+                MyLabel proba = new MyLabel("proba", 100, 0, 0, 0, 0, Pressure_In.ToString() + " мм.рт.ст.");
                 grid.Children.Add(proba);
             }
 
-            if (Pressure_Measure_Choose.SelectedIndex == 2)
+            if ((Pressure_Measure_Choose.SelectedIndex == 2) && (Pressure_In >= 0))
             {
-
-            }
-            
+                Pressure_In = 100000 * Pressure_In / 101325 * 760;
+                MyLabel proba = new MyLabel("proba", 100, 0, 30, 0, 0, Pressure_In.ToString() + " мм.рт.ст.");
+                grid.Children.Add(proba);
+            }*/
         }
 
+        private void Pressure_Measure_Choose_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /*
+            var grid = this.Content as Grid;
+            var Pressure_Measure_Choose = grid.Children[7] as MyComboBox;
+
+            if ((Pressure_Measure_Choose.SelectedIndex == 0) && (Pressure_In >= 0))
+            {
+                Pressure_In *= 760;
+                MyLabel proba = new MyLabel("proba", 100, 0, 0, 0, 0, Pressure_In.ToString() + " мм.рт.ст.");
+                grid.Children.Add(proba);
+            }
+
+            if ((Pressure_Measure_Choose.SelectedIndex == 2) && (Pressure_In >= 0))
+            {
+                Pressure_In = 100000 * Pressure_In / 101325 * 760;
+                MyLabel proba = new MyLabel("proba", 100, 0, 30, 0, 0, Pressure_In.ToString() + " мм.рт.ст.");
+                grid.Children.Add(proba);
+            }
+             */
+        }
+
+        //int Temperature_In = -10;
         private void Temperature_Input_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            /*
+            var grid = this.Content as Grid;
+            var Temperature_Measure_Choose = grid.Children[10] as MyComboBox;
+            var Temperature_Input = grid.Children[9] as MyTextBox;
+            if (Temperature_Input.Text.Length > 0)
+                Temperature_In = int.Parse(Temperature_Input.Text);
+            else
+                Temperature_In = -10;
+            if ((Temperature_Measure_Choose.SelectedIndex == 1) && (Temperature_In >= 0))
+            {
+                Temperature_In += 273;
+            }
+             */
         }
 
         private void Temperature_Measure_Choose_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            /*
+            var grid = this.Content as Grid;
+            var Temperature_Measure_Choose = grid.Children[10] as MyComboBox;
 
+            if ((Temperature_Measure_Choose.SelectedIndex == 1) && (Temperature_In >= 0))
+            {
+                Temperature_In += 273;
+            }
+             */
         }
 
+        double Pressure_In = 0;
+        double Temperature_In = 0;
         private void Next_1_Click(object sender, RoutedEventArgs e)
         {
-            /*Grid container_2 = new Grid();
-            container_2.Name = "container_2";
+            bool g = true;
+            var grid = this.Content as Grid;
+            var Pressure_Input = grid.Children[6] as TextBox;
+            var Pressure_Measure_Choose = grid.Children[7] as MyComboBox;
+            var Temperature_Input = grid.Children[9] as TextBox;
+            var Temperature_Measure_Choose = grid.Children[10] as MyComboBox;
+            double result = 0;
 
-            this.Content = container_2;*/
-            MessageBox.Show("Выбран пункт Далее");
+            if ((double.TryParse(Pressure_Input.Text, out result) == false) ||
+                (double.TryParse(Temperature_Input.Text, out result) == false))
+                g = false;
+
+            if (g == true)
+            {
+                Pressure_In = double.Parse(Pressure_Input.Text);
+                Temperature_In = double.Parse(Temperature_Input.Text);
+
+                if (Pressure_Measure_Choose.SelectedIndex == 0)
+                {
+                    Pressure_In *= 760;
+                }
+                if (Pressure_Measure_Choose.SelectedIndex == 2)
+                {
+                    Pressure_In = 100000 * Pressure_In / 101325 * 760;
+                }
+                if (Temperature_Measure_Choose.SelectedIndex == 1)
+                {
+                    Temperature_In += 273;
+                }
+                MessageBox.Show("Все круто!");
+                Window_Add_Pipeline New_Pipeline = new Window_Add_Pipeline();
+                New_Pipeline.Show();
+            }
+
+            if (g == false)
+            {
+                MessageBox.Show("Некоторые поля не заполнены/введены неверно.");
+            }
+            
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)
