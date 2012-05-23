@@ -17,7 +17,7 @@ namespace EasyPACT
             // Вывод курсовой
             //var ans = Database.Query("insert into liquid_list(name,formula,molar_mass) values('Бутан','C4H10',58.1)");
             //var ans = Database.Query("select * from liquid_list");
-            string ConnectionString = "Data Source=|DataDirectory|\\EasyPACT.sdf";
+            /*string ConnectionString = "Data Source=|DataDirectory|\\EasyPACT.sdf";
             SqlCeConnection Connect = new SqlCeConnection(ConnectionString);
             Connect.Open();
             var command = Connect.CreateCommand();
@@ -43,9 +43,15 @@ namespace EasyPACT
             //table.AcceptChanges();
             
             
-            Connect.Close();
-
-            Console.WriteLine();
+            Connect.Close();*/
+            //var ht = new HeatExchangerPipe(14);
+            //var liq = new LiquidMix("6,7", 0.28, 20, 760);
+            /*ht.SetLiquidInPipes(liq);
+            var liq2 = new LiquidPure("10", 81.45, 1);
+            ht.SetLiquidInCase(liq2);
+            var liq3 = ht.Run();*/
+            //Console.WriteLine("asd".IndexOf('b'));
+            Network.Get().ChooseHeatExchanger(1,2);
             Console.ReadKey();
         }
     }

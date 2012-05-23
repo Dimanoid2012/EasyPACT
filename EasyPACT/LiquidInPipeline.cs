@@ -89,6 +89,22 @@ namespace EasyPACT
             //set { this.SetMassFlow(value); }
             set { this._MassFlow = value; }
         }
+        public double Nu
+        {
+            get
+            {
+                if (this.Re >= 10000)
+                {
+                    return 0.021 * Math.Pow(this.Re, 0.8) * Math.Pow(this.Liquid.Pr, 0.43);
+                }
+                else
+                    if (Re < 2300)
+                        return 1.55 * Math.Pow(this.Re * this.Pipeline.Diameter / this.Pipeline.Length, 1 / 3);
+                    else
+                        return 0;
+
+            }
+        }
         /// <summary>
         /// Трубопровод, по которому течет жидкость.
         /// </summary>

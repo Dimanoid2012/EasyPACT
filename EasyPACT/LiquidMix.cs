@@ -50,7 +50,14 @@ namespace EasyPACT
             this.SetPressure(p);
             this.SetTemperature(t);
         }
-
+        public override void Condence()
+        {
+            
+        }
+        public override void Evaporate()
+        {
+            
+        }
         /// <summary>
         /// Низкокипящий компонент смеси.
         /// </summary>
@@ -137,6 +144,7 @@ namespace EasyPACT
             this._Temperature = temperature;
             this.SetDensity();
             this.SetViscosity();
+            this.ThermalCapacity = Calculation.ThermalCapacity(this);
         }
     }
 }

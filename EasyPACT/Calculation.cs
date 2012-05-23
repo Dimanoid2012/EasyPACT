@@ -238,5 +238,30 @@ namespace EasyPACT
             var name2 = Database.Query(string.Format("SELECT name FROM liquid_list WHERE id='{0}'", liq.Id.Split(',')[1]))[0][0];
             return name1 + " - " + name2;
         }
+        static public double VaporizationHeat(Liquid liq)
+        {
+            var table = Database.Query(String.Format("SELECT temperature,vaporization_heat FROM XLV WHERE id='{0}'", liq.Id));
+            var data = table.Select(list => list.ConvertAll(Convert.ToDouble)).ToList();
+            return LinearInterpolation(data, liq.Temperature);
+        }
+        static public double Pressure(int id,double t)
+        {
+            var table =
+                Database.Query(
+                    String.Format("SELECT boiling_point,pressure FROM boiling_points_from_pressure WHERE id='{0}'",
+                                  id));
+            var data = table.Select(list => list.ConvertAll(Convert.ToDouble)).ToList();
+            return LinearInterpolation(data, t);
+        }
+        static public double ThermalCapacity(LiquidPure liq)
+        {
+            var table = Database.Query(String.Format("SELECT temperature,thermal_capacity FROM thermal_capacity WHERE id='{0}'", liq.Id));
+            var data = table.Select(list => list.ConvertAll(Convert.ToDouble)).ToList();
+            return LinearInterpolation(data, liq.Temperature);
+        }
+        static public double ThermalCapacity(LiquidMix liq)
+        {
+            return liq.MassFraction*liq.LB.ThermalCapacity + (1 - liq.MassFraction)*liq.HB.ThermalCapacity;
+        }
     }
 }

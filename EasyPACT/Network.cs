@@ -77,5 +77,32 @@
             this.Productivity = productivity;
             return true;
         }
+        public bool AddHeatExchanger(HeatExchangerPipe he)
+        {
+            this.HeatExchanger = he;
+            this.ForcingLine.Pipeline.AddLocalResistance(2*1.5 + he.NumberOfPipes + 2.5*(he.NumberOfCourses - 1));
+            return true;
+        }
+        /// <summary>
+        /// Подобрать теплообменник к заданной сети.
+        /// </summary>
+        /// <param name="temperatureLiquid">Требуемая на выходе температура.</param>
+        /// <param name="temperatureSteam">Температура греющего пара.</param>
+        public void ChooseHeatExchanger(double temperatureLiquid,double temperatureSteam)
+        {
+            var t = (temperatureLiquid + this.ForcingLine.Liquid.Temperature)/2; // Средняя температура
+            //this.HeatExchanger.SetLiquidInPipes(this.ForcingLine.Liquid);
+            Liquid liq;
+            if (this.ForcingLine.Liquid.GetType().ToString().IndexOf("Pure") != -1)
+                liq = new LiquidPure(this.ForcingLine.Liquid.Id, t, this.ForcingLine.Liquid.Pressure);
+            else
+            {
+                var l = this.ForcingLine.Liquid as LiquidMix;
+                liq = new LiquidMix(l.Id, l.MolarFraction, t, l.Pressure);
+            }
+            var steam = new LiquidPure("10", temperatureSteam, Calculation.Pressure(10, temperatureSteam));
+
+            //var Q = this.Productivity * 
+        }
     }
 }

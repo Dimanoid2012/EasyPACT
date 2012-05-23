@@ -15,6 +15,10 @@
         /// </summary>
         protected string _Id;
         /// <summary>
+        /// Агрегатное состояние жидкости.
+        /// </summary>
+        protected int _ModularCondition;
+        /// <summary>
         /// Молярная масса жидкости в килограммах на киломоль.
         /// </summary>
         protected double _MolarMass;
@@ -22,6 +26,10 @@
         /// Название жидкости.
         /// </summary>
         protected string _Name;
+        /// <summary>
+        /// Направление фазового перехода.
+        /// </summary>
+        protected int _PhaseChange;
         /// <summary>
         /// Давление, оказываемое на жидкость, в мм рт. ст.
         /// </summary>
@@ -31,13 +39,21 @@
         /// </summary>
         protected double _Temperature;
         /// <summary>
+        /// Теплоемкость, в Дж/(кг*К).
+        /// </summary>
+        public double ThermalCapacity { get; protected set; }
+        /// <summary>
+        /// Коэффициент теплопроводности, в Вт/(м*К).
+        /// </summary>
+        public double ThermalConductivity { get; protected set; }
+        /// <summary>
+        /// Удельная теплота парообразования, кДж/кг.
+        /// </summary>
+        public double VaporizationHeat { get; protected set; }
+        /// <summary>
         /// Динамический коэффициент вязкости жидкости в Па*с
         /// </summary>
         protected double _ViscosityDynamic;
-
-        private Liquid() // Стандартный конструктор
-        {
-        }
 
         /// <summary>
         /// Данный класс описывает физические свойства 
@@ -98,6 +114,13 @@
             get { return this._Name; }
         }
         /// <summary>
+        /// Критерий Прандтля.
+        /// </summary>
+        public double Pr
+        {
+            get { return this.ThermalCapacity*this.ViscosityDynamic/this.ThermalConductivity; }
+        }
+        /// <summary>
         /// Возвращает давление жидкости в мм рт. ст.
         /// </summary>
         public double Pressure
@@ -133,7 +156,14 @@
         {
             get { return this._ViscosityDynamic / this._Density; }
         }
-
+        /// <summary>
+        /// Конденсироваться.
+        /// </summary>
+        public abstract void Condence();
+        /// <summary>
+        /// Испариться.
+        /// </summary>
+        public abstract void Evaporate();
         /// <summary>
         /// Вычисляет молярную массу жидкости.
         /// </summary>
