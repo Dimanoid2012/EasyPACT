@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace EasyPACT_Graphic
 {
@@ -33,6 +34,15 @@ namespace EasyPACT_Graphic
             Name = name;
             Height = 28;
             Margin = new Thickness(a, b, c, d);
+            HorizontalAlignment = HorizontalAlignment.Left;
+            VerticalAlignment = VerticalAlignment.Top;
+            Content = cont;
+        }
+
+        public MyLabel(string name, string cont)
+        {
+            Name = name;
+            Height = 28;
             HorizontalAlignment = HorizontalAlignment.Left;
             VerticalAlignment = VerticalAlignment.Top;
             Content = cont;
