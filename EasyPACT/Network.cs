@@ -103,9 +103,10 @@ namespace EasyPACT
                 liq = new LiquidMix(l.Id, l.MolarFraction, t, l.Pressure);
             }
             var steam = new LiquidPure("10", temperatureSteam, Calculation.Pressure(10, temperatureSteam));
+            steam.Evaporate();
             liq.Temperature = t;
             this.Productivity = 32 * 1000 / 3600 / liq.Density; // УДАЛИТЬ
-            var Q = this.Productivity*liq.Density*liq.ThermalCapacity*
+            var Q = this.Productivity*liq.Density*liq.ThermalCapacity/1000*
                     (temperatureLiquid - this.ForcingLine.Liquid.Temperature);
             var G1 = Q/steam.VaporizationHeat;
             var V1 = G1/steam.Density;

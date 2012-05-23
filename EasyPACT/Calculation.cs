@@ -39,10 +39,17 @@ namespace EasyPACT
         /// <param name="liq">Объект, описывающий жидкость.</param>
         /// <returns>Возвращает значение плотности жидкости при ее температуре в килограммах на кубометр.</returns>
         static public double Density(LiquidPure liq)
-        { 
-            var table = Database.Query(String.Format("SELECT temperature,density FROM IV WHERE id='{0}'", liq.Id));
-            var data = table.Select(list => list.ConvertAll(Convert.ToDouble)).ToList();
-            return LinearInterpolation(data,liq.Temperature);
+        {
+            if (liq.ModularCondition == 1)
+            {
+                var table = Database.Query(String.Format("SELECT temperature,density FROM IV WHERE id='{0}'", liq.Id));
+                var data = table.Select(list => list.ConvertAll(Convert.ToDouble)).ToList();
+                return LinearInterpolation(data, liq.Temperature);
+            }
+            else
+            {
+                return 8.31*liq.Temperature/liq.Pressure/133.3;
+            }
         }
         /// <summary>
         /// Вычисляет динамический коэффициент вязкости жидкости методом линейной интерполяции по узловым точкам,

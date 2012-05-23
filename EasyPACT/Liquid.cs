@@ -14,10 +14,11 @@
         /// Идентификационный номер для поиска в БД.
         /// </summary>
         protected string _Id;
+
         /// <summary>
         /// Агрегатное состояние жидкости.
         /// </summary>
-        protected int _ModularCondition;
+        public int ModularCondition { get; protected set; }
         /// <summary>
         /// Молярная масса жидкости в килограммах на киломоль.
         /// </summary>

@@ -28,10 +28,10 @@
                 switch(value)
                 {
                     case 21:
-                        this._ModularCondition = 1;
+                        this.ModularCondition = 1;
                         break;
                     case 12:
-                        this._ModularCondition = 2;
+                        this.ModularCondition = 2;
                         break;
                     default:
                         return;
@@ -63,11 +63,11 @@
             this._Density = Calculation.Density(this);
             this.ThermalCapacity = Calculation.ThermalCapacity(this);
             this._ViscosityDynamic = Calculation.ViscosityDynamic(this)/1000;
-            if (this._ModularCondition == 0)
-                this._ModularCondition = this.Temperature <= this.BoilingPoint ? 1 : 2;
+            if (this.ModularCondition == 0)
+                this.ModularCondition = this.Temperature <= this.BoilingPoint ? 1 : 2;
             else
                 if (this.Temperature == this.BoilingPoint)
-                    this._PhaseChange = this._ModularCondition == 1 ? 12 : 21;
+                    this._PhaseChange = this.ModularCondition == 1 ? 12 : 21;
             this.VaporizationHeat = Calculation.VaporizationHeat(this);
 
         }
