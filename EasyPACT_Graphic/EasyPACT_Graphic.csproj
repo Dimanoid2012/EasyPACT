@@ -73,9 +73,12 @@
     </ApplicationDefinition>
     <Compile Include="MyButton.cs" />
     <Compile Include="MyComboBox.cs" />
+    <Compile Include="MyGrid.cs" />
     <Compile Include="MyLabel.cs" />
     <Compile Include="MyTextBox.cs" />
+    <Compile Include="QuestionWindow.cs" />
     <Compile Include="Window_Add_Liquid.cs" />
+    <Compile Include="Window_Add_Pipeline.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
