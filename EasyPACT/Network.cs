@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace EasyPACT
 {
@@ -115,13 +116,18 @@ namespace EasyPACT
             var dtMin = steam.Temperature - temperatureLiquid;
             var dt = (dtMax - dtMin)/Math.Log(dtMax - dtMin);
             var Kor = 120;
-            var For = Q/Kor/dt;
+            var For = Q*1000/Kor/dt;
             var Re2min = 10000;
             var w2min = Re2min*liq.ViscosityDynamic/liq.Density/0.021;
             var nmax = V2/0.785/0.021/0.021/w2min;
             var list =
-                Database.Query(string.Format("SELECT * FROM XXXIV WHERE surface_area < {0} AND number_of_pipes < {1}",
-                                             For, nmax));
+                Database.Query(string.Format("SELECT id FROM XXXIV WHERE surface_area < {0} AND pipes_per_course < {1}",
+                                             For, nmax))[0];
+            var id = list.Last();
+            var he = new HeatExchangerPipe(Convert.ToInt32(id));
+            he.SetLiquidInCase(steam);
+            he.SetLiquidInPipes(this.ForcingLine.Liquid);
+            this.HeatExchanger = he;
 
         }
     }

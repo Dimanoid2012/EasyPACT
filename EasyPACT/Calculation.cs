@@ -46,10 +46,14 @@ namespace EasyPACT
                 var data = table.Select(list => list.ConvertAll(Convert.ToDouble)).ToList();
                 return LinearInterpolation(data, liq.Temperature);
             }
-            else
+            if (liq.Id == "10")
             {
-                return 8.31*liq.Temperature/liq.Pressure/133.3;
+                var table =
+                    Database.Query(String.Format("SELECT temperature,density FROM LVI"));
+                var data = table.Select(list => list.ConvertAll(Convert.ToDouble)).ToList();
+                return LinearInterpolation(data, liq.Temperature);
             }
+            return 10; // УБРАТЬ ПОТОМ 
         }
         /// <summary>
         /// Вычисляет динамический коэффициент вязкости жидкости методом линейной интерполяции по узловым точкам,

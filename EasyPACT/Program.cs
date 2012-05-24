@@ -56,6 +56,8 @@ namespace EasyPACT
             var liq3 = ht.Run();*/
             //Console.WriteLine("asd".IndexOf('b'));
             Network.Get().ChooseHeatExchanger(liq.BoilingPoint,81.45);
+            Console.WriteLine("Для смеси {0} с параметрами t={1} и p={2} подходит ТО {3}, чтобы ее вскипятить.", liq.Id,
+                              liq.Temperature, liq.Pressure, net.HeatExchanger.Id);
             Console.ReadKey();
         }
     }
