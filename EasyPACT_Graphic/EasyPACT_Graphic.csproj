@@ -76,6 +76,7 @@
     <Compile Include="MyGrid.cs" />
     <Compile Include="MyLabel.cs" />
     <Compile Include="MyTextBox.cs" />
+    <Compile Include="PictureBox.cs" />
     <Compile Include="QuestionWindow.cs" />
     <Compile Include="Window_Add_Liquid.cs" />
     <Compile Include="Window_Add_Pipeline.cs" />

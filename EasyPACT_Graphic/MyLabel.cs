@@ -27,6 +27,8 @@ namespace EasyPACT_Graphic
             HorizontalAlignment = HorizontalAlignment.Left;
             VerticalAlignment = VerticalAlignment.Top;
             Content = cont;
+            FontFamily = new FontFamily("Verdana");
+            FontSize = 12;
         }
 
         public MyLabel(string name, int a, int b, int c, int d, string cont)
@@ -37,6 +39,20 @@ namespace EasyPACT_Graphic
             HorizontalAlignment = HorizontalAlignment.Left;
             VerticalAlignment = VerticalAlignment.Top;
             Content = cont;
+            FontFamily = new FontFamily("Verdana");
+            FontSize = 12;
+        }
+
+        public MyLabel(string name, int a, int b, int c, int d, string cont, int size)
+        {
+            Name = name;
+            Height = 28;
+            Margin = new Thickness(a, b, c, d);
+            HorizontalAlignment = HorizontalAlignment.Left;
+            VerticalAlignment = VerticalAlignment.Top;
+            Content = cont;
+            FontFamily = new FontFamily("Verdana");
+            FontSize = size;
         }
 
         public MyLabel(string name, string cont)
@@ -46,6 +62,8 @@ namespace EasyPACT_Graphic
             HorizontalAlignment = HorizontalAlignment.Left;
             VerticalAlignment = VerticalAlignment.Top;
             Content = cont;
+            FontFamily = new FontFamily("Verdana");
+            FontSize = 12;
         }
     }
 }
