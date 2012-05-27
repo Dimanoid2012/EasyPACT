@@ -30,17 +30,17 @@ namespace EasyPACT_Graphic
             System.Threading.Thread.CurrentThread.CurrentCulture = inf;
             inf.NumberFormat.NumberDecimalSeparator = ".";
 
-            MyLabel Liquid_type_lbl = new MyLabel("Liquid_type_lbl", 150, 280, 150, 0, 0, "Выберите тип жидкости:");
+            MyLabel Liquid_type_lbl = new MyLabel("Liquid_type_lbl", 180, 211, 120, 0, 0, "Выберите тип жидкости:");
 
-            MyComboBox Liquid_type = new MyComboBox("Liquid_type", 160, 446, 150, 12, 0);
+            MyComboBox Liquid_type = new MyComboBox("Liquid_type", 180, 380, 121, 12, 0);
             Liquid_type.Items.Add("Чистая жидкость");
             Liquid_type.Items.Add("Бинарная смесь");
             Liquid_type.SelectedIndex = 0;
             Liquid_type.SelectionChanged += Liquid_type_SelectionChanged;
 
-            MyLabel Liquid_lbl = new MyLabel("Liquid_lbl", 302, 184, 0, 0,"Выберите жидкость:");
+            MyLabel Liquid_lbl = new MyLabel("Liquid_lbl", 237, 154, 0, 0,"Выберите жидкость:");
 
-            MyComboBox Liquid = new MyComboBox("Liquid", 160, 446, 184, 0, 0);
+            MyComboBox Liquid = new MyComboBox("Liquid", 180, 380, 155, 0, 0);
 
             foreach (var a in Database.Query("select name from liquid_list")[0])
             {
@@ -51,30 +51,34 @@ namespace EasyPACT_Graphic
 
             Liquid.SelectionChanged += Liquid_SelectionChanged;
 
-            MyLabel Liquid_parameters_lbl = new MyLabel("Liquid_parameters_lbl", 144, 295, 230, 0, 0,"Параметры жидкости:");
+            MyLabel Liquid_parameters_lbl = new MyLabel("Liquid_parameters_lbl", 212, 195, 0, 0,"Параметры жидкости на входе");
 
-            MyLabel Pressure_lbl = new MyLabel("Pressure_lbl", 144, 355, 256, 0, 0, "Давление:");
+            MyLabel Pressure_lbl = new MyLabel("Pressure_lbl", 144, 300, 226, 0, 0, "Давление:");
 
-            MyTextBox Pressure_Input = new MyTextBox("Pressure_Input", 78, 446, 256, 0, 0);
+            MyTextBox Pressure_Input = new MyTextBox("Pressure_Input", 88, 380, 226, 0, 0);
             Pressure_Input.TextChanged += Pressure_Input_TextChanged;
 
-            MyComboBox Pressure_Measure_Choose = new MyComboBox("Pressure_Measure_Choose", 80, 527, 256, 0, 0);
+            MyComboBox Pressure_Measure_Choose = new MyComboBox("Pressure_Measure_Choose", 90, 470, 226, 0, 0);
             Pressure_Measure_Choose.SelectedIndex = 0;
             Pressure_Measure_Choose.Items.Add("МПа");
             Pressure_Measure_Choose.Items.Add("мм.рт.ст.");
             Pressure_Measure_Choose.Items.Add("бар");
             Pressure_Measure_Choose.SelectionChanged += Pressure_Measure_Choose_SelectionChanged;
 
-            MyLabel Temperature_lbl = new MyLabel("Temperature_lbl", 340, 282, 0, 0,"Температура:");
+            MyLabel Pressure_Input_Help = new MyLabel("Pressure_Input_Help", 375, 246, 0, 0, "Пример: '20'; '12.7'", 10);
 
-            MyTextBox Temperature_Input = new MyTextBox("Temperature_Input", 78, 446, 282, 0, 0);
+            MyLabel Temperature_lbl = new MyLabel("Temperature_lbl", 280, 272, 0, 0,"Температура:");
+
+            MyTextBox Temperature_Input = new MyTextBox("Temperature_Input", 88, 380, 272, 0, 0);
             Temperature_Input.TextChanged += Temperature_Input_TextChanged;
 
-            MyComboBox Temperature_Measure_Choose = new MyComboBox("Temperature_Measure_Choose", 80, 527, 282, 0, 0);
+            MyComboBox Temperature_Measure_Choose = new MyComboBox("Temperature_Measure_Choose", 90, 470, 272, 0, 0);
             Temperature_Measure_Choose.SelectedIndex = 0;
             Temperature_Measure_Choose.Items.Add("Цельсий");
             Temperature_Measure_Choose.Items.Add("Кельвин");;
             Temperature_Measure_Choose.SelectionChanged += Temperature_Measure_Choose_SelectionChanged;
+
+            MyLabel Temperature_Input_Help = new MyLabel("Temperature_Input_Help", 375, 292, 0, 0, "Пример: '25'; '293.15'", 10);
 
             MyButton Next_1 = new MyButton("Next_1", 100, 0, 0, 30, 30, "Далее");
             Next_1.Height = 30;
@@ -94,6 +98,13 @@ namespace EasyPACT_Graphic
             Liquid_Add.Visibility = Visibility.Hidden;
             Liquid_Add.Click += Liquid_Add_Click;
 
+            MyButton Liquid_Solution_Add = new MyButton("Liquid_Add", 200, 300, 320, 0, 0, "Добавление новой смеси");
+            Liquid_Solution_Add.Height = 30;
+            Liquid_Solution_Add.Visibility = Visibility.Hidden;
+            Liquid_Solution_Add.Click += Liquid_Solution_Add_Click;
+
+            
+
             Grid container_1 = new Grid();
             container_1.Name = "container_1";
             container_1.Children.Add(Liquid_type_lbl);//0
@@ -110,10 +121,14 @@ namespace EasyPACT_Graphic
             container_1.Children.Add(Next_1);//11
             container_1.Children.Add(Help);//12
             container_1.Children.Add(Liquid_Add);//13
+            container_1.Children.Add(Liquid_Solution_Add);//14
+            container_1.Children.Add(Pressure_Input_Help);//15
+            container_1.Children.Add(Temperature_Input_Help);//16
 
             this.Content = container_1;
-            this.Width = 750;
-            this.Height = 500;
+            this.Width = 650;
+            this.Height = 450;
+            
         }
 
         private void Liquid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -122,11 +137,17 @@ namespace EasyPACT_Graphic
             var Liquid_type = grid.Children[1] as MyComboBox;
             var Liquid = grid.Children[3] as MyComboBox;
             var Liquid_Add = grid.Children[13] as MyButton;
+            var Liquid_Solution_Add = grid.Children[14] as MyButton;
 
             if ((Liquid_type.SelectedIndex == 0) && (Liquid.SelectedIndex == Liquid.Items.Count - 1))
                 Liquid_Add.Visibility = Visibility.Visible;
             else
                 Liquid_Add.Visibility = Visibility.Hidden;
+
+            if ((Liquid_type.SelectedIndex == 1) && (Liquid.SelectedIndex == Liquid.Items.Count - 1))
+                Liquid_Solution_Add.Visibility = Visibility.Visible;
+            else
+                Liquid_Solution_Add.Visibility = Visibility.Hidden;
                 /*
             {
                 
@@ -303,6 +324,7 @@ namespace EasyPACT_Graphic
         {
             bool g = true;
             var grid = this.Content as Grid;
+            var Liquid = grid.Children[3] as MyComboBox;
             var Pressure_Input = grid.Children[6] as TextBox;
             var Pressure_Measure_Choose = grid.Children[7] as MyComboBox;
             var Temperature_Input = grid.Children[9] as TextBox;
@@ -310,7 +332,8 @@ namespace EasyPACT_Graphic
             double result = 0;
 
             if ((double.TryParse(Pressure_Input.Text, out result) == false) ||
-                (double.TryParse(Temperature_Input.Text, out result) == false))
+                (double.TryParse(Temperature_Input.Text, out result) == false) ||
+                (Liquid.SelectedIndex == Liquid.Items.Count - 1))
                 g = false;
 
             if (g == true)
@@ -351,6 +374,15 @@ namespace EasyPACT_Graphic
         {
             Window_Add_Liquid New_Liquid = new Window_Add_Liquid();
             New_Liquid.Show();
+        }
+
+        private void Liquid_Solution_Add_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Выбрано добавление новой смеси.");
+            /*
+            Window_Add_Solution New_Solution = new Window_Add_Solution();
+            New_Solution.Show();
+            */
         }
         
         
