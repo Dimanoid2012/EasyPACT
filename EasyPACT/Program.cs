@@ -45,7 +45,7 @@ namespace EasyPACT
             
             Connect.Close();*/
             //var ht = new HeatExchangerPipe(14);
-            var liq = new LiquidMix("6,7", 0.28, 20, 760);
+            var liq = new LiquidMix("11,12", 0.28, 20, 760);
             var pip = new PipelineRound(33, 1, 0.069, 0.003, 50);
             var lip = new LiquidInPipeline(liq, pip);
             var pump = new CentrifugalPump(5);
