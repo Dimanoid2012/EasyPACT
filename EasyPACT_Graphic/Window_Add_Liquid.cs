@@ -41,64 +41,64 @@ namespace EasyPACT_Graphic
                 Cancel_Add_Liquid.VerticalAlignment = VerticalAlignment.Bottom;
                 Cancel_Add_Liquid.Click += Cancel_Add_Liquid_Click;
 
-                MyLabel New_Liquid_Name_lbl = new MyLabel("New_Liquid_Name_lbl",160,30,130,0,0,"Название вещества:");
+                MyLabel New_Liquid_Name_lbl = new MyLabel("New_Liquid_Name_lbl",160, 30, 120, 0, 0, "Название вещества:");
                 New_Liquid_Name_lbl.Height = 28;
 
-                MyTextBox New_Liquid_Name = new MyTextBox("New_Liquid_Name", 100, 150, 130, 0, 0);
+                MyTextBox New_Liquid_Name = new MyTextBox("New_Liquid_Name", 100, 171, 121, 0, 0);
 
-                MyLabel New_Liquid_Name_Help = new MyLabel("New_Liquid_Name_Help", 30, 155, 0, 0, "Пример: 'Ацетон'; 'Азотная кислота, 50%'");
+                MyLabel New_Liquid_Name_Help = new MyLabel("New_Liquid_Name_Help", 30, 145, 0, 0, "Пример: 'Ацетон'; 'Азотная кислота, 50%'", 10);
 
-                MyLabel New_Chemical_Formula_lbl = new MyLabel("New_Chemical_Formula_lbl",170,350,130,0,0,"Химическая формула:");
+                MyLabel New_Chemical_Formula_lbl = new MyLabel("New_Chemical_Formula_lbl", 170, 332, 120, 0, 0, "Химическая формула:");
 
-                MyTextBox New_Chemical_Formula = new MyTextBox("New_Chemical_Formula", 100, 480, 130, 0, 0);
+                MyTextBox New_Chemical_Formula = new MyTextBox("New_Chemical_Formula", 100, 483, 121, 0, 0);
 
-                MyLabel New_Chemical_Formula_Help = new MyLabel("New_Chemical_Formula_Help",370,155,0,0,"Пример: 'CH3COCH3', 'NH3', 'HNO3'");
+                MyLabel New_Chemical_Formula_Help = new MyLabel("New_Chemical_Formula_Help", 332, 145, 0, 0, "Пример: 'CH3COCH3'; 'NH3', 'HNO3'", 10);
 
-                MyLabel New_Molar_Mass_lbl = new MyLabel("New_Molar_Mass_lbl",655, 130, 0, 0,"Молярная масса:");
+                MyLabel New_Molar_Mass_lbl = new MyLabel("New_Molar_Mass_lbl",640, 120, 0, 0,"Молярная масса:");
 
-                MyTextBox New_Molar_Mass = new MyTextBox("New_Molar_Mass", 100, 760, 130, 0, 0);
+                MyTextBox New_Molar_Mass = new MyTextBox("New_Molar_Mass", 100, 760, 121, 0, 0);
 
-                MyLabel New_Molar_Mass_Help = new MyLabel("New_Molar_Mass_Help",700, 155, 0, 0,"Пример: '63.01', '17.03'");
+                MyLabel New_Molar_Mass_Help = new MyLabel("New_Molar_Mass_Help", 640, 145, 0, 0, "Пример: '63.01'; '17.03'", 10);
 
-                MyLabel Table_Data_lbl = new MyLabel("Table_Data_lbl",430, 190, 0, 0,"Зависимости");
+                MyLabel Table_Data_lbl = new MyLabel("Table_Data_lbl", 397, 178, 0, 0,"Зависимости", 14);
 
-                MyLabel New_Temp_Viscosity_lbl = new MyLabel("New_Temp_Viscosity_lbl",70, 210, 0, 0,"Вязкость от температуры");
+                MyLabel New_Temp_Viscosity_lbl = new MyLabel("New_Temp_Viscosity_lbl",58, 210, 0, 0,"Вязкость от температуры");
 
-                MyLabel New_Temp_Density_lbl = new MyLabel("New_Temp_Density_lbl",390, 210, 0, 0,"Плотность от температуры");
+                MyLabel New_Temp_Density_lbl = new MyLabel("New_Temp_Density_lbl",360, 210, 0, 0,"Плотность от температуры");
 
-                MyLabel New_Pressure_BoilingPoint_lbl = new MyLabel("New_Pressure_BoilingPoint_lbl",685, 210, 0, 0,"Точка кипения от давления");
+                MyLabel New_Pressure_BoilingPoint_lbl = new MyLabel("New_Pressure_BoilingPoint_lbl", 667, 210, 0, 0, "Точка кипения от давления");
                 
-                MyLabel First_Temperature_lbl = new MyLabel("First_Temperature_lbl",40, 240, 0, 0,"Температура");
+                MyLabel First_Temperature_lbl = new MyLabel("First_Temperature_lbl",35, 240, 0, 0,"Температура");
 
                 MyTextBox First_Temperature = new MyTextBox("First_Temperature_1", 100, 30, 260, 0, 0);
 
-                MyLabel First_Viscosity_lbl = new MyLabel("First_Viscosity_lbl", 165, 240, 0, 0, "Вязкость");
+                MyLabel First_Viscosity_lbl = new MyLabel("First_Viscosity_lbl", 163, 240, 0, 0, "Вязкость");
 
                 MyTextBox First_Viscosity = new MyTextBox("First_Viscosity_1", 100, 145, 260, 0, 0);
 
-                MyLabel Second_Temperature_lbl = new MyLabel("Second_Temperature_lbl",370, 240, 0, 0,"Температура");
+                MyLabel Second_Temperature_lbl = new MyLabel("Second_Temperature_lbl",343, 240, 0, 0,"Температура");
 
-                MyTextBox Second_Temperature = new MyTextBox("Second_Temperature_1", 100, 360, 260, 0, 0);
+                MyTextBox Second_Temperature = new MyTextBox("Second_Temperature_1", 100, 337, 260, 0, 0);
 
-                MyLabel Second_Density_lbl = new MyLabel("Second_Density_lbl",490, 240, 0, 0,"Плотность");
+                MyLabel Second_Density_lbl = new MyLabel("Second_Density_lbl",465, 240, 0, 0,"Плотность");
 
-                MyTextBox Second_Density = new MyTextBox("Second_Density_1", 100, 475, 260, 0, 0);
+                MyTextBox Second_Density = new MyTextBox("Second_Density_1", 100, 452, 260, 0, 0);
 
-                MyLabel Third_Pressure_lbl = new MyLabel("Third_Pressure_lbl",675, 240, 0, 0,"Давление");
+                MyLabel Third_Pressure_lbl = new MyLabel("Third_Pressure_lbl", 660, 240, 0, 0,"Давление");
 
-                MyTextBox Third_Pressure = new MyTextBox("Third_Pressure_1", 100, 655, 260, 0, 0);
+                MyTextBox Third_Pressure = new MyTextBox("Third_Pressure_1", 100, 645, 260, 0, 0);
 
-                MyLabel Third_Temperature_lbl = new MyLabel("Third_Temperature_lbl",775, 240, 0, 0,"Точка кипения");
+                MyLabel Third_Temperature_lbl = new MyLabel("Third_Temperature_lbl",758, 240, 0, 0,"Точка кипения");
 
-                MyTextBox Third_Temperature = new MyTextBox("Third_Temperature_1", 100, 770, 260, 0, 0);
+                MyTextBox Third_Temperature = new MyTextBox("Third_Temperature_1", 100, 760, 260, 0, 0);
 
-                MyButton Add_Temp_Viscosity = new MyButton("Add_Temp_Viscosity", 100, 30, 285, 0, 0, "Добавить точку");
+                MyButton Add_Temp_Viscosity = new MyButton("Add_Temp_Viscosity", 120, 77, 285, 0, 0, "Добавить точку");
                 Add_Temp_Viscosity.Click += Add_Temp_Viscosity_Click;
 
-                MyButton Add_Temp_Density = new MyButton("Add_Temp_Density", 120, 405, 285, 0, 0, "Добавить точку");
+                MyButton Add_Temp_Density = new MyButton("Add_Temp_Density", 120, 385, 285, 0, 0, "Добавить точку");
                 Add_Temp_Density.Click += Add_Temp_Density_Click;
 
-                MyButton Add_Pressure_BoilingPoint = new MyButton("Add_Pressure_BoilingPoint", 120, 705, 285, 0, 0, "Добавить точку");
+                MyButton Add_Pressure_BoilingPoint = new MyButton("Add_Pressure_BoilingPoint", 120, 695, 285, 0, 0, "Добавить точку");
                 Add_Pressure_BoilingPoint.Click += Add_Pressure_BoilingPointy_Click;
 
                 Grid_Add_Liquid.Children.Add(New_Liquid_Name_lbl);//0
@@ -149,7 +149,7 @@ namespace EasyPACT_Graphic
                 a += 25;
                 var Grid_Add_Liquid = this.Content as MyGrid;
                 var Add_Temp_Viscosity = Grid_Add_Liquid.Children[28] as MyButton;
-                Add_Temp_Viscosity.Margin = new Thickness(30, a, 0, 0);
+                Add_Temp_Viscosity.Margin = new Thickness(77, a, 0, 0);
                 a -= 25;
                 MyTextBox First_Temperature = new MyTextBox("First_Temperature_" + ((a + 25 - d) / 25 + 1).ToString(), 100, 30, a, 0, 0);
                 Grid_Add_Liquid.Children.Add(First_Temperature);
@@ -168,11 +168,11 @@ namespace EasyPACT_Graphic
                 b += 25;
                 var Grid_Add_Liquid = this.Content as MyGrid;
                 var Add_Temp_Density = Grid_Add_Liquid.Children[29] as MyButton;
-                Add_Temp_Density.Margin = new Thickness(405, b, 0, 0);
+                Add_Temp_Density.Margin = new Thickness(385, b, 0, 0);
                 b -= 25;
-                MyTextBox Second_Temperature = new MyTextBox("Second_Temperature_" + ((b + 25 - d) / 25 + 1).ToString(), 100, 360, b, 0, 0);
+                MyTextBox Second_Temperature = new MyTextBox("Second_Temperature_" + ((b + 25 - d) / 25 + 1).ToString(), 100, 337, b, 0, 0);
                 Grid_Add_Liquid.Children.Add(Second_Temperature);
-                MyTextBox Second_Density = new MyTextBox("Second_Density_" + ((b + 25 - d) / 25 + 1).ToString(), 100, 475, b, 0, 0);
+                MyTextBox Second_Density = new MyTextBox("Second_Density_" + ((b + 25 - d) / 25 + 1).ToString(), 100, 452, b, 0, 0);
                 Grid_Add_Liquid.Children.Add(Second_Density);
                 b += 25;
                 ListSecondTemp.Add(0);
@@ -187,11 +187,11 @@ namespace EasyPACT_Graphic
                 c += 25;
                 var Grid_Add_Liquid = this.Content as MyGrid;
                 var Add_Temp_Density = Grid_Add_Liquid.Children[30] as MyButton;
-                Add_Temp_Density.Margin = new Thickness(705, c, 0, 0);
+                Add_Temp_Density.Margin = new Thickness(695, c, 0, 0);
                 c -= 25;
-                MyTextBox Third_Pressure = new MyTextBox("Third_Pressure_" + ((c + 25 - d) / 25 + 1).ToString(), 100, 655, c, 0, 0);
+                MyTextBox Third_Pressure = new MyTextBox("Third_Pressure_" + ((c + 25 - d) / 25 + 1).ToString(), 100, 645, c, 0, 0);
                 Grid_Add_Liquid.Children.Add(Third_Pressure);
-                MyTextBox Third_Temperature = new MyTextBox("Third_Temperature_" + ((c + 25 - d) / 25 + 1).ToString(), 100, 770, c, 0, 0);
+                MyTextBox Third_Temperature = new MyTextBox("Third_Temperature_" + ((c + 25 - d) / 25 + 1).ToString(), 100, 760, c, 0, 0);
                 Grid_Add_Liquid.Children.Add(Third_Temperature);
                 c += 25;
                 ListThirdPressure.Add(0);

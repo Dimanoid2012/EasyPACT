@@ -85,8 +85,15 @@ namespace EasyPACT
             this._FrequencyOfRotation = frequency;
             this._Productivity = this._OptimalProductivity*frequency/this._OptimalFrequencyOfRotation;
             this._Pressure = this._OptimalPressure*Math.Pow(frequency/this._OptimalFrequencyOfRotation, 2);
-            Network.Get().SetProductivity(this, this._Productivity);
+            Network.Get().SetProductivity(this._Productivity);
         }
-
+        public void SetProductivity(double V)
+        {
+            this._Productivity = V;
+            this._FrequencyOfRotation = this._Productivity*this._OptimalFrequencyOfRotation/this._OptimalProductivity;
+            this._Pressure = this._OptimalPressure*
+                             Math.Pow(this._FrequencyOfRotation/this._OptimalFrequencyOfRotation, 2);
+            //Network.Get().SetProductivity(this, this._Productivity);
+        }
     }
 }

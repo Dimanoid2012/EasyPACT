@@ -1,9 +1,14 @@
 ﻿<Window x:Class="EasyPACT_Graphic.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="500" Width="900">
     <Grid>
-        <!--
+        <!--<Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="White" Offset="0.006" />
+                <GradientStop Color="#FFABFF3B" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,12,12,0" Name="Liquid_type" VerticalAlignment="Top" Width="313" SelectionChanged="Liquid_type_SelectionChanged">
             <ComboBoxItem Content="Чистая жидкость" IsSelected="True" />
             <ComboBoxItem Content="Бинарная смесь" />
@@ -28,5 +33,19 @@
             <ComboBoxItem Content="Кельвин" />
         </ComboBox>
         <Label Content="Добавление жидкости." Height="28" HorizontalAlignment="Left" Margin="26,178,0,0" Name="Liquid_Add" VerticalAlignment="Top" Visibility="Collapsed" />-->
+        <!--<Label Content="Добавление нового трубопровода" Height="28" HorizontalAlignment="Left" Margin="333,75,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="Тип трубопровода:" Height="28" HorizontalAlignment="Left" Margin="12,128,0,0" Name="label2" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="125,128,0,0" Name="comboBox1" VerticalAlignment="Top" Width="469" />
+        <Label Content="Материал:" Height="28" HorizontalAlignment="Left" Margin="600,128,0,0" Name="label3" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,128,12,0" Name="comboBox2" VerticalAlignment="Top" Width="197" />
+        <Label Content="Диаметр:" Height="28" HorizontalAlignment="Left" Margin="378,158,0,0" Name="label4" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="125,156,0,0" Name="textBox1" VerticalAlignment="Top" Width="51" />
+        <Label Content="Длина:" Height="28" HorizontalAlignment="Left" Margin="73,154,0,0" Name="label5" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="441,160,0,0" Name="textBox2" VerticalAlignment="Top" Width="51" />
+        <Label Content="Толщина стенки:" Height="28" HorizontalAlignment="Left" Margin="643,158,0,0" Name="label6" VerticalAlignment="Top" FontFamily="Verdana" FontSize="12"/>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="746,158,0,0" Name="textBox3" VerticalAlignment="Top" Width="51" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="498,160,0,0" Name="comboBox3" VerticalAlignment="Top" Width="61" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="803,158,0,0" Name="comboBox4" VerticalAlignment="Top" Width="63" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="182,156,0,0" Name="comboBox5" VerticalAlignment="Top" Width="61" />-->
     </Grid>
 </Window>

@@ -12,6 +12,13 @@ namespace EasyPACT
     {
         static private double LinearInterpolation(List<List<double>> list, double value)
         {
+            //var c = list.ToDictionary(b=> list[0].ElementAt(b));
+            var c = list[0].OrderBy(b => b).ToList();
+            var d = new List<double>();
+            for (int i = 0; i < c.Count; i++)
+                d.Add(list[1][list[0].FindIndex(b => b == c[i])]);
+            list[0] = c;
+            list[1] = d;
             // Выбираем известный аргумент слева от данного значения
             var xLeft = list[0].Last(a => a <= value);
             // Выбираем известный аргумент справа от данного значения
@@ -94,7 +101,7 @@ namespace EasyPACT
                         "SELECT x,boiling_point FROM boiling_points_from_composition WHERE id1='{0}' AND id2='{1}' AND pressure={2}",
                         mix.LB.Id, mix.HB.Id, mix.Pressure));
             var data = table.Select(list => list.ConvertAll(Convert.ToDouble)).ToList();
-            return LinearInterpolation(data, mix.MolarFraction*100);
+            return LinearInterpolation(data, (1-mix.MolarFraction)*100);
         }
         /// <summary>
         /// Вычисляет молярную массу жидкости.
@@ -273,6 +280,12 @@ namespace EasyPACT
         static public double ThermalCapacity(LiquidMix liq)
         {
             return liq.MassFraction*liq.LB.ThermalCapacity + (1 - liq.MassFraction)*liq.HB.ThermalCapacity;
+        }
+        static public double ThermalConductivity(LiquidPure liq)
+        {
+            var table = Database.Query(String.Format("SELECT temperature,thermal_conductivity FROM thermal_conductivities WHERE id='{0}'", liq.Id));
+            var data = table.Select(list => list.ConvertAll(Convert.ToDouble)).ToList();
+            return LinearInterpolation(data, liq.Temperature);
         }
     }
 }
