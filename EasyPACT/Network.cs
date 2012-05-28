@@ -38,7 +38,7 @@ namespace EasyPACT
         /// </summary>
         public HeatExchangerPipe HeatExchanger { get; private set; }
         /// <summary>
-        /// Производительность сети в м3/с.
+        /// Производительность сети в кг/с.
         /// </summary>
         public double Productivity { get; private set; }
 
@@ -80,14 +80,18 @@ namespace EasyPACT
         /// <summary>
         /// Устанавливает производительность сети. Вызвать может только насос, установленный в сети.
         /// </summary>
-        /// <param name="productivity">Новая производительность.</param>
+        /// <param name="productivity">Новая производительность, кг/с.</param>
         public bool SetProductivity(double productivity)
         {
             this.Productivity = productivity;
             if (this.Pump != null)
                 this.Pump.SetProductivity(productivity/this.VacuumLine.Liquid.Density);
+            if (this.HeatExchanger != null)
+                this.HeatExchanger.LiquidInPipeline.MassFlow = productivity*this.HeatExchanger.NumberOfCourses/
+                                                               this.HeatExchanger.NumberOfPipes;
             this.VacuumLine.MassFlow = productivity;
             this.ForcingLine.MassFlow = productivity;
+
             return true;
         }
         public bool AddHeatExchanger(HeatExchangerPipe he)
@@ -99,10 +103,10 @@ namespace EasyPACT
         /// <summary>
         /// Подобрать насос к заданной сети.
         /// </summary>
-        /// <param name="massFlow">Необходимый массовый расход.</param>
         /// <param name="liftingHeight">Высота подъема жидкости.</param>
-        public void ChooseCentrifugalPump(double massFlow, double liftingHeight)
+        public void ChooseCentrifugalPump(double liftingHeight)
         {
+            var massFlow = this.Productivity;
             var Hvac = (this.VacuumLine.LossOfPressureUponAFriction() +
                         this.VacuumLine.LossOfPressureUponLocalResistances())/this.VacuumLine.Liquid.Density/9.81;
             var Hfor = (this.ForcingLine.LossOfPressureUponAFriction() +

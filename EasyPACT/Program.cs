@@ -62,7 +62,7 @@ namespace EasyPACT
             var net = Network.Create(lip2, lip);
             net.SetProductivity(30000/3600.0);
             Network.Get().ChooseHeatExchanger(liq.BoilingPoint, liq.BoilingPoint + 20);
-            net.ChooseCentrifugalPump(30000/3600.0, 5.6);
+            net.ChooseCentrifugalPump(5.6);
             Console.WriteLine("Смесь: {0}", liq.Name);
             Console.WriteLine("\tТемпература: {0} град.", liq.Temperature);
             Console.WriteLine("\tДавление: {0} мм рт. ст.", liq.Pressure);
@@ -110,8 +110,8 @@ namespace EasyPACT
             Console.WriteLine("\tПотеря напора: {0} м",
                               (net.HeatExchanger.LiquidInPipeline.LossOfPressureUponLocalResistances() +
                                net.HeatExchanger.LiquidInPipeline.LossOfPressureUponAFriction()) / net.HeatExchanger.LiquidInPipeline.Liquid.Density / 9.81);
-            Console.WriteLine("Затраты на создание скорости потока: {0} м/с", net.ForcingLine.LossOfPressureUponCreationOfSpeed());
-            Console.WriteLine("Затраты на подъем жидкости: {0} м/с", net.ForcingLine.LossOfPressureUponLifting(5.6));
+            Console.WriteLine("Затраты на создание скорости потока: {0} Па", net.ForcingLine.LossOfPressureUponCreationOfSpeed());
+            Console.WriteLine("Затраты на подъем жидкости: {0} Па", net.ForcingLine.LossOfPressureUponLifting(5.6));
             Console.WriteLine("Полный напор: {0} м", (net.VacuumLine.LossOfPressureUponLocalResistances() +
                                                  net.VacuumLine.LossOfPressureUponAFriction())/
                                                 net.VacuumLine.Liquid.Density/9.81 +
@@ -121,7 +121,7 @@ namespace EasyPACT
                                                 (net.HeatExchanger.LiquidInPipeline.LossOfPressureUponLocalResistances() +
                                                  net.HeatExchanger.LiquidInPipeline.LossOfPressureUponAFriction())/
                                                 net.HeatExchanger.LiquidInPipeline.Liquid.Density/9.81 +
-                                                net.ForcingLine.LossOfPressureUponLifting(5.6));
+                                                net.ForcingLine.LossOfPressureUponLifting(5.6) / 9.81 / net.ForcingLine.Liquid.Density);
             Console.WriteLine("Для смеси {0} с параметрами t={1} и p={2} подходит ТО {3}, чтобы ее вскипятить.", liq.Id,
                               liq.Temperature, liq.Pressure, net.HeatExchanger.Id);
             Console.WriteLine("Выбранный насос: {0}.",net.Pump.Brand);

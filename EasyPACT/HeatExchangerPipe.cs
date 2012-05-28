@@ -33,7 +33,7 @@ namespace EasyPACT
             this.NumberOfCourses = Convert.ToInt32(data[2][0]);
             this.PipesLength = Convert.ToDouble(data[3][0]);
             this.SurfaceArea = Convert.ToDouble(data[4][0]);
-            this.Pipeline = new PipelineRound(33,1,0.025,2.5,this.PipesLength);
+            this.Pipeline = new PipelineRound(33, 1, 0.025, 0.0025, this.PipesLength);
             this.Case = new PipelineRound(33, 1, this.Diameter, 0, 1);
         }
         /// <summary>
@@ -81,7 +81,7 @@ namespace EasyPACT
                 return 1/(1/a1 + 8.404e-4 + 1/a2);
             }
         }
-        public Liquid Run()
+        private Liquid Run()
         {
             var t1 = this.LiquidInCase.Liquid.Temperature - this.LiquidInPipeline.Liquid.Temperature;
             var dt = this.Propellent;
