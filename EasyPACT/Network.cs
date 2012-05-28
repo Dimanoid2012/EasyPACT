@@ -49,17 +49,7 @@ namespace EasyPACT
         /// </summary>
         /// <param name="vacuumLine">Всасывающая линия.</param>
         /// <param name="forcingLine">Нагнетающая линия.</param>
-        /// <param name="pump">Насос.</param>
         /// <returns>Возвращает новый или существующий объект сети.</returns>
-        public static Network Create(LiquidInPipeline vacuumLine, LiquidInPipeline forcingLine, CentrifugalPump pump)
-        {
-            if (_isExist)
-                return _network;
-            var network = new Network { VacuumLine = vacuumLine, ForcingLine = forcingLine, Pump = pump };
-            _network = network;
-            _isExist = true;
-            return network;
-        }
         public static Network Create(LiquidInPipeline vacuumLine, LiquidInPipeline forcingLine)
         {
             if (_isExist)
@@ -92,12 +82,6 @@ namespace EasyPACT
             this.VacuumLine.MassFlow = productivity;
             this.ForcingLine.MassFlow = productivity;
 
-            return true;
-        }
-        public bool AddHeatExchanger(HeatExchangerPipe he)
-        {
-            this.HeatExchanger = he;
-            this.ForcingLine.Pipeline.AddLocalResistance(2*1.5 + he.NumberOfPipes + 2.5*(he.NumberOfCourses - 1));
             return true;
         }
         /// <summary>

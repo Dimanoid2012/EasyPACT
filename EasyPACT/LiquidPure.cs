@@ -20,6 +20,9 @@
             this.SetPressure(p);
             this.SetTemperature(t);
         }
+        /// <summary>
+        /// Фазовый переход.
+        /// </summary>
         private int PhaseChange
         {
             get { return this._PhaseChange; }
@@ -48,7 +51,7 @@
         {
             this.PhaseChange = 12;
         }
-        public override sealed void SetMolarMass()
+        protected override sealed void SetMolarMass()
         {
             this._MolarMass = Calculation.MolarMass(this);
         }

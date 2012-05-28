@@ -168,7 +168,7 @@
         /// <summary>
         /// Вычисляет молярную массу жидкости.
         /// </summary>
-        public abstract void SetMolarMass();
+        protected abstract void SetMolarMass();
         /// <summary>
         /// Задает давление на жидкость и пересчитывает ее параметры.
         /// </summary>

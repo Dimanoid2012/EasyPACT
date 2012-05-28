@@ -85,7 +85,6 @@
     <Compile Include="Exceptions\InvalidTemperatureException.cs" />
     <Compile Include="Exceptions\InvalidDatabaseConnectionOpenException.cs" />
     <Compile Include="HeatExchangerPipe.cs" />
-    <Compile Include="HeatExchangerPipeInPipe.cs" />
     <Compile Include="Liquid.cs" />
     <Compile Include="LiquidPure.cs" />
     <Compile Include="LiquidInPipeline.cs" />

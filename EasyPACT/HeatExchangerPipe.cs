@@ -39,14 +39,14 @@ namespace EasyPACT
         /// <summary>
         /// Теплота, передающаяся в теплообменнике.
         /// </summary>
-        public double Heat
+        private double Heat
         {
             get { return this.LiquidInCase.MassFlow*this.LiquidInCase.Liquid.VaporizationHeat; }
         }
         /// <summary>
         /// Средняя движущая сила процесса теплопередачи.
         /// </summary>
-        public double Propellent
+        private double Propellent
         {
             get
             {
@@ -66,7 +66,7 @@ namespace EasyPACT
         /// <summary>
         /// Коэффициент теплопередачи.
         /// </summary>
-        public double HeatTransferKoefficient
+        private double HeatTransferKoefficient
         {
             get
             {

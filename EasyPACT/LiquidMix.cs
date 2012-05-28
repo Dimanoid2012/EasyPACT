@@ -23,7 +23,7 @@ namespace EasyPACT
         protected double _MolarFraction;
 
         /// <summary>
-        /// 
+        /// Данный класс описывает жидкие смеси.
         /// </summary>
         /// <param name="id">Идентификационный номер смеси.</param>
         /// <param name="molarFraction">Молярная доля низкокипящего компонента.</param>
@@ -107,7 +107,7 @@ namespace EasyPACT
             this._MolarFraction = MolarFraction;
             this._MassFraction = MolarFraction * this._Components[0].MolarMass / this.MolarMass;
         }
-        public override void SetMolarMass()
+        protected override void SetMolarMass()
         {
             this._MolarMass = this.MolarFraction * this._Components[0].MolarMass + (1 - this.MolarFraction) * this._Components[1].MolarMass;
         }
@@ -138,6 +138,7 @@ namespace EasyPACT
             this._Pressure = pressure;
             this._BoilingPoint = Calculation.BoilingPointMix(this);
         }
+
         protected override void SetTemperature(double temperature)
         {
             this._Components.Select(a => a.Temperature = temperature);
@@ -147,13 +148,18 @@ namespace EasyPACT
             this.ThermalCapacity = Calculation.ThermalCapacity(this);
             this.SetThermalConductivity();
         }
+        /// <summary>
+        /// Теплопроводность смеси при 30 градусах Цельсия.
+        /// </summary>
         protected double ThermalConductivity30
         {
             get { return 4.22e-8*this.ThermalCapacity*this.Density*Math.Pow(this.Density/this.MolarMass, 0.33); }
         }
+        /// <summary>
+        /// Теплопроводность смеси при текущей температура.
+        /// </summary>
         public void SetThermalConductivity()
         {
-            var liq = this;
             this.ThermalConductivity = this.ThermalConductivity30*(1 - 0.002*(this.Temperature - 30));
         }
     }

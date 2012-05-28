@@ -8,17 +8,6 @@ namespace EasyPACT
     public class LiquidInPipeline
     {
         /// <summary>
-        /// Режим течения жидкости:
-        /// 1 - ламинарный
-        /// 2 - переходный
-        /// 3 - турбулентный
-        /// </summary>
-        //protected int _CurrentMode;
-        /// <summary>
-        /// Коэффициент трения
-        /// </summary>
-        //protected double _Friction;
-        /// <summary>
         /// Жидкость, текущая по трубопроводу.
         /// </summary>
         protected Liquid _Liquid;
@@ -31,18 +20,6 @@ namespace EasyPACT
         /// </summary>
         protected double _MassFlow;
         /// <summary>
-        /// Критерий Рейнольдса.
-        /// </summary>
-        //protected double _Re;
-        /// <summary>
-        /// Средняя скорость потока жидкости в м/с.
-        /// </summary>
-        //protected double _Speed;
-        /// <summary>
-        /// Объемный расход жидкости в м3/с.
-        /// </summary>
-        //protected double _VolumeFlow;
-        /// <summary>
         /// Данный класс описывает поведение жидкости в трубопроводе.
         /// </summary>
         /// <param name="Liq">Жидкость, текущая по трубопроводу.</param>
@@ -52,10 +29,6 @@ namespace EasyPACT
             this._Liquid = Liq;
             this._Pipeline = Pip;
         }
-        /*public int CurrentMode
-        {
-            get { return this._CurrentMode; }
-        }*/
         /// <summary>
         /// Коэффициент трения жидкости.
         /// </summary>
@@ -86,7 +59,6 @@ namespace EasyPACT
         public double MassFlow
         {
             get { return this._MassFlow; }
-            //set { this.SetMassFlow(value); }
             set { this._MassFlow = value; }
         }
         public double Nu
@@ -97,12 +69,7 @@ namespace EasyPACT
                 {
                     return 0.021 * Math.Pow(this.Re, 0.8) * Math.Pow(this.Liquid.Pr, 0.43);
                 }
-                else
-                    if (Re < 2300)
-                        return 1.55 * Math.Pow(this.Re * this.Pipeline.Diameter / this.Pipeline.Length, 1 / 3);
-                    else
-                        return 0;
-
+                return 1.55 * Math.Pow(this.Re * this.Pipeline.Diameter / this.Pipeline.Length, 1 / 3);
             }
         }
         /// <summary>
@@ -134,56 +101,17 @@ namespace EasyPACT
             get { return this._MassFlow/this.Liquid.Density; }
         }
         /// <summary>
-        /// Устанавливает массовый расход жидкости в трубопроводе.
+        /// Суммарные потери давления на трение и местные сопротивления, Па.
         /// </summary>
-        /// <param name="G">Массовый расход жидкости в кг/с.</param>
-        /*protected void SetMassFlow(double G)
+        /// <returns>Суммарные потери давления на трение и местные сопротивления, Па.</returns>
+        public double LossOfPressureSummary()
         {
-            this._MassFlow = G;
-            //this._VolumeFlow = this._MassFlow / this.Liquid.Density;
-            //this.SetSpeed();
-        }*/
+            return this.LossOfPressureUponAFriction() + this.LossOfPressureUponLocalResistances();
+        }
         /// <summary>
-        /// Вычисляет критерий Рейнольдса для жидкости.
+        /// Потеря давления на трение, Па.
         /// </summary>
-        /*protected void SetRe()
-        {
-            this._Re = this.Speed * this.Pipeline.Diameter * this.Liquid.Density / (this.Liquid.ViscosityDynamic / 1000);
-            this._CurrentMode = (this._Re <= 2300) ? 1 : (this._Re >= 10000) ? 3 : 2;
-            this.SetFriction();
-        }*/
-        /// <summary>
-        /// Вычисляет среднюю скорость потока жидкости в трубопроводе.
-        /// </summary>
-        /*protected void SetSpeed()
-        {
-            this._Speed = 4 * this.MassFlow / (this.Liquid.Density*Math.PI * Math.Pow(this.Pipeline.Diameter, 2));
-            //this.SetRe();
-        }*/
-        /// <summary>
-        /// Устанавливает среднюю скорость потока жидкости в трубопроводе.
-        /// </summary>
-        /// <param name="G">Средняя скорость потока жидкости в м/с.</param>
-        /*protected void SetSpeed(double w)
-        {
-            this._Speed = w;
-            this.VolumeFlow = w * Math.PI * Math.Pow(this.Pipeline.Diameter, 2) / 4;
-            //this.SetRe();
-        }*/
-        /// <summary>
-        /// Устанавливает объемный расход жидкости в трубопроводе.
-        /// </summary>
-        /// <param name="G">Объемный расход жидкости в м3/с.</param>
-        /*protected void SetVolumeFlow(double V)
-        {
-            this._VolumeFlow = V;
-            this._MassFlow = this._VolumeFlow * this.Liquid.Density;
-            //this.SetSpeed();
-        }*/
-        /// <summary>
-        /// Потеря давления на трение.
-        /// </summary>
-        /// <returns>Возвращает потерю давления на трение.</returns>
+        /// <returns>Возвращает потерю давления на трение, Па.</returns>
         public double LossOfPressureUponAFriction()
         {
             return this.FactorOfAFriction * this.Pipeline.Length / this.Pipeline.Diameter * this.Liquid.Density *
@@ -191,35 +119,35 @@ namespace EasyPACT
         }
 
         /// <summary>
-        /// Затраты давления на создание скорости потока на выходе из сети.
+        /// Затраты давления на создание скорости потока на выходе из сети, Па.
         /// </summary>
-        /// <returns>Возвращает потерю давления на создание скорости потока на выходе из сети.</returns>
+        /// <returns>Возвращает потерю давления на создание скорости потока на выходе из сети, Па.</returns>
         public double LossOfPressureUponCreationOfSpeed()
         {
             return this.Liquid.Density * Math.Pow(this.Speed, 2) / 2;
         }
         /// <summary>
-        /// Потеря давления на подъем жидкости.
+        /// Потеря давления на подъем жидкости, Па.
         /// </summary>
         /// <param name="h">Высота подачи жидкости.</param>
-        /// <returns>Возвращает потерю давления на подъем жидкости.</returns>
+        /// <returns>Возвращает потерю давления на подъем жидкости, Па.</returns>
         public double LossOfPressureUponLifting(double h)
         {
             return this.Liquid.Density*9.81*h;
         }
         /// <summary>
-        /// Разность давлений в пространстве всасывания и нагнетания.
+        /// Разность давлений в пространстве всасывания и нагнетания, Па.
         /// </summary>
         /// <param name="lip">Жидкость во всасывающем трубопроводе.</param>
-        /// <returns>Возвращает разность давлений в пространстве всасывания и нагнетания.</returns>
+        /// <returns>Возвращает разность давлений в пространстве всасывания и нагнетания, Па.</returns>
         public double LossOfPressureUponLifting(LiquidInPipeline lip)
         {
             return this.Liquid.Pressure - lip.Liquid.Pressure;
         }
         /// <summary>
-        /// Потеря давления на преодоление местных сопротивлений.
+        /// Потеря давления на преодоление местных сопротивлений, Па.
         /// </summary>
-        ///<returns>Возвращает потерю давления на преодоление местных сопротивлений.</returns>
+        ///<returns>Возвращает потерю давления на преодоление местных сопротивлений, Па.</returns>
         public double LossOfPressureUponLocalResistances()
         {
             return this.Pipeline.FactorOfLocalResistance * this.Liquid.Density * Math.Pow(this.Speed, 2) / 2;
