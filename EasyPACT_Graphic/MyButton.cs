@@ -18,6 +18,16 @@ namespace EasyPACT_Graphic
 {
     public class MyButton : Button
     {
+        public int but_left;
+        public int but_top;
+        public int but_right;
+        public int but_bottom;
+
+        public override string ToString()
+        {
+            return String.Format("{0},{1},{2},{3}", but_left, but_top, but_right, but_bottom);
+        }
+
         public MyButton(string name, int width, int a, int b, int c, int d, string cont)
         {
             Name = name;
@@ -27,6 +37,10 @@ namespace EasyPACT_Graphic
             HorizontalAlignment = HorizontalAlignment.Left;
             VerticalAlignment = VerticalAlignment.Top;
             Content = cont;
+            but_left = a;
+            but_top = b;
+            but_right = c;
+            but_bottom = d;
         }
     }
 }
