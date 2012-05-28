@@ -18,6 +18,16 @@ namespace EasyPACT_Graphic
 {
     public class MyComboBox : ComboBox
     {
+        int but_left;
+        int but_top;
+        int but_right;
+        int but_bottom;
+
+        public override string ToString()
+        {
+            return String.Format("{0},{1},{2},{3}", but_left, but_top, but_right, but_bottom);
+        }
+
         public MyComboBox(string name, int width, int a, int b, int c, int d)
         {
             Name = name;
@@ -28,6 +38,10 @@ namespace EasyPACT_Graphic
             VerticalAlignment = VerticalAlignment.Top;
             FontFamily = new FontFamily("Verdana");
             FontSize = 12;
+            but_left = a;
+            but_top = b;
+            but_right = c;
+            but_bottom = d;
         }
     }
 }
