@@ -76,7 +76,9 @@
   <ItemGroup>
     <Compile Include="Calculation.cs" />
     <Compile Include="CentrifugalPump.cs" />
-    <Compile Include="Database.cs" />
+    <Compile Include="Database.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Exceptions\InvalidDatabaseQueryException.cs" />
     <Compile Include="Exceptions\InvalidIdException.cs" />
     <Compile Include="Exceptions\InvalidPressureException.cs" />
@@ -154,9 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EasyPACT.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="EasyPACT_.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
