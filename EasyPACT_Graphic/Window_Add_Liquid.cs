@@ -23,24 +23,25 @@ namespace EasyPACT_Graphic
                 Grid Grid_Add_Liquid = new MyGrid();
                 Grid_Add_Liquid.Name = "Grid_Add_Liquid";
                 
-
-                MyButton OK_Add_Liquid = new MyButton("OK_Add_Liquid", 100, 0, 0, 30, 30, "Добавить");
+                MyButton OK_Add_Liquid = new MyButton("OK_Add_Liquid", 150, 0, 0, 20, 7, "Добавить");
                 OK_Add_Liquid.Height = 30;
                 OK_Add_Liquid.HorizontalAlignment = HorizontalAlignment.Right;
                 OK_Add_Liquid.VerticalAlignment = VerticalAlignment.Bottom;
+                OK_Add_Liquid.Background = Brushes.DarkGreen;
                 OK_Add_Liquid.Click += OK_Add_Liquid_Click;
 
-                MyButton Help_Add_Liquid = new MyButton("Help_Add_Liquid", 100, 30, 0, 0, 30, "Помощь");
+                MyButton Help_Add_Liquid = new MyButton("Help_Add_Liquid", 70, 18, 0, 0, 7, "Справка");
                 Help_Add_Liquid.Height = 30;
                 Help_Add_Liquid.VerticalAlignment = VerticalAlignment.Bottom;
+                Help_Add_Liquid.Background = Brushes.DarkGreen;
                 Help_Add_Liquid.Click += Help_Add_Liquid_Click;
-
+                /*
                 MyButton Cancel_Add_Liquid = new MyButton("Cancel_Add_Liquid", 100, 0, 0, 140, 30, "Отменить");
                 Cancel_Add_Liquid.Height = 30;
                 Cancel_Add_Liquid.HorizontalAlignment = HorizontalAlignment.Right;
                 Cancel_Add_Liquid.VerticalAlignment = VerticalAlignment.Bottom;
                 Cancel_Add_Liquid.Click += Cancel_Add_Liquid_Click;
-
+                */
                 MyLabel New_Liquid_Name_lbl = new MyLabel("New_Liquid_Name_lbl",160, 30, 120, 0, 0, "Название вещества:");
                 New_Liquid_Name_lbl.Height = 28;
 
@@ -101,7 +102,49 @@ namespace EasyPACT_Graphic
                 MyButton Add_Pressure_BoilingPoint = new MyButton("Add_Pressure_BoilingPoint", 120, 695, 285, 0, 0, "Добавить точку");
                 Add_Pressure_BoilingPoint.Click += Add_Pressure_BoilingPointy_Click;
 
-                Grid_Add_Liquid.Children.Add(New_Liquid_Name_lbl);//0
+
+                Image Add_Liquid_Img_Top = new Image()
+                {
+                    Width = 900,
+                    Height = 90,
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    VerticalAlignment = VerticalAlignment.Top,
+                    Name = "Add_Liquid_Img_Top",
+                    Margin = new Thickness(0, 0, 0, 0)
+                };
+
+                BitmapImage Add_Liquid_Img_Top_bi = new BitmapImage();
+                Add_Liquid_Img_Top_bi.BeginInit();
+                Add_Liquid_Img_Top_bi.UriSource = new Uri(@"C:\EasyPACT\EasyPACT_Graphic\EasyPACT_Add_New_Liquid.jpg");
+                Add_Liquid_Img_Top_bi.EndInit();
+                Add_Liquid_Img_Top.Source = Add_Liquid_Img_Top_bi;
+
+
+
+                Image Add_Liquid_Img_Bottom = new Image()
+                {
+                    Width = 900,
+                    Height = 50,
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    VerticalAlignment = VerticalAlignment.Top,
+                    Name = "Add_Liquid_Img_Bottom",
+                    Margin = new Thickness(0, 366, 0, 0)
+                };
+
+                BitmapImage Add_Liquid_Img_Bottom_bi = new BitmapImage();
+                Add_Liquid_Img_Bottom_bi.BeginInit();
+                Add_Liquid_Img_Bottom_bi.UriSource = new Uri(@"C:\EasyPACT\EasyPACT_Graphic\EasyPACT_Bottom_First.jpg");
+                Add_Liquid_Img_Bottom_bi.EndInit();
+                Add_Liquid_Img_Bottom.Source = Add_Liquid_Img_Bottom_bi;
+
+
+
+
+
+
+
+
+                Grid_Add_Liquid.Children.Add(Add_Liquid_Img_Top);//0
                 Grid_Add_Liquid.Children.Add(New_Liquid_Name);//1
                 Grid_Add_Liquid.Children.Add(New_Liquid_Name_Help);//2
                 Grid_Add_Liquid.Children.Add(New_Chemical_Formula_lbl);//3
@@ -110,8 +153,9 @@ namespace EasyPACT_Graphic
                 Grid_Add_Liquid.Children.Add(New_Molar_Mass_lbl);//6
                 Grid_Add_Liquid.Children.Add(New_Molar_Mass);//7
                 Grid_Add_Liquid.Children.Add(New_Molar_Mass_Help);//8
-                Grid_Add_Liquid.Children.Add(OK_Add_Liquid);//9
-                Grid_Add_Liquid.Children.Add(Cancel_Add_Liquid);//10
+                Grid_Add_Liquid.Children.Add(Add_Liquid_Img_Bottom);//9
+                Grid_Add_Liquid.Children.Add(OK_Add_Liquid);//10
+                //Grid_Add_Liquid.Children.Add(Cancel_Add_Liquid);//11
                 Grid_Add_Liquid.Children.Add(Help_Add_Liquid);//11
                 Grid_Add_Liquid.Children.Add(Table_Data_lbl);//12
                 Grid_Add_Liquid.Children.Add(New_Temp_Viscosity_lbl);//13
@@ -132,11 +176,16 @@ namespace EasyPACT_Graphic
                 Grid_Add_Liquid.Children.Add(Add_Temp_Viscosity);//28
                 Grid_Add_Liquid.Children.Add(Add_Temp_Density);//29
                 Grid_Add_Liquid.Children.Add(Add_Pressure_BoilingPoint);//30
+                Grid_Add_Liquid.Children.Add(New_Liquid_Name_lbl);//31
 
                 Name = "Window_Add_Liquid";
                 Content = Grid_Add_Liquid;
-                Width = 900;
-                Height = 500;
+                Width = 908;
+                Height = 450;
+                this.MinWidth = 908;
+                this.MaxWidth = 908;
+                this.MinHeight = 450;
+                this.MaxHeight = 450;
                 Title = "Добавление новой жидкости";
             }
             
@@ -279,7 +328,6 @@ namespace EasyPACT_Graphic
                 {
                     MessageBox.Show("Все отлично!");
 
-
                     MessageBox.Show("Название вещества: " + LiquidName);
                     MessageBox.Show("Формула вещества: " + LiquidChemicalFormula);
                     MessageBox.Show("Молярная масса: " + MolarMass.ToString());
@@ -351,8 +399,5 @@ namespace EasyPACT_Graphic
                 MessageBox.Show("Окно будет закрыто.");
                 Close();
             }
-
-            
-
         }
     }

@@ -30,363 +30,143 @@ namespace EasyPACT_Graphic
             System.Threading.Thread.CurrentThread.CurrentCulture = inf;
             inf.NumberFormat.NumberDecimalSeparator = ".";
 
-            MyLabel Liquid_type_lbl = new MyLabel("Liquid_type_lbl", 180, 211, 120, 0, 0, "Выберите тип жидкости:");
+            MyLabel Welcome = new MyLabel("Welcome", 30, 130, 0, 0, "Добро пожаловать в EasyPACT!", 16);
 
-            MyComboBox Liquid_type = new MyComboBox("Liquid_type", 180, 380, 121, 12, 0);
-            Liquid_type.Items.Add("Чистая жидкость");
-            Liquid_type.Items.Add("Бинарная смесь");
-            Liquid_type.SelectedIndex = 0;
-            Liquid_type.SelectionChanged += Liquid_type_SelectionChanged;
-
-            MyLabel Liquid_lbl = new MyLabel("Liquid_lbl", 237, 154, 0, 0,"Выберите жидкость:");
-
-            MyComboBox Liquid = new MyComboBox("Liquid", 180, 380, 155, 0, 0);
-
-            foreach (var a in Database.Query("select name from liquid_list")[0])
+            MyLabel Choose_Task_lbl = new MyLabel("Choose_Task_lbl", 30, 175, 0, 0, "Выберите задачу, которую требуется решить:", 13);
+            RadioButton Choose_Task_First = new RadioButton()
             {
-                Liquid.Items.Add(a);
-            }
-            Liquid.Items.Add("Добавить жидкость...");
-            Liquid.SelectedIndex = 0;
+                Content = " Расчет жидкости на выходе из системы по заданным арматуре и состоянии жидкости на входе в систему",
+                //Height = 30,
+                Name = "Choose_Task_First",
+                Margin = new Thickness(50, 215, 0, 0),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                FontSize = 13,
+                FontWeight = FontWeights.Bold,
+                IsChecked = true
+            };
 
-            Liquid.SelectionChanged += Liquid_SelectionChanged;
+            RadioButton Choose_Task_Second = new RadioButton()
+            {
+                Content = " Расчет теплообменного аппарата по заданным арматуре и состояниям жидкости на входе и на выходе из системы",
+                //Height = 16,
+                Name = "Choose_Task_Second",
+                Margin = new Thickness(50, 245, 0, 0),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                FontSize = 13,
+                FontWeight = FontWeights.Bold
+            };
 
-            MyLabel Liquid_parameters_lbl = new MyLabel("Liquid_parameters_lbl", 212, 195, 0, 0,"Параметры жидкости на входе");
+            MyButton Next_0 = new MyButton("Next_0", 150, 0, 0, 20, 7, "Далее");
+            Next_0.HorizontalAlignment = HorizontalAlignment.Right;
+            Next_0.VerticalAlignment = VerticalAlignment.Bottom;
+            Next_0.Background = Brushes.DarkGreen;
+            Next_0.FontSize = 12;
+            Next_0.Foreground = Brushes.White;
+            Next_0.Click += Next_0_Click;
 
-            MyLabel Pressure_lbl = new MyLabel("Pressure_lbl", 144, 300, 226, 0, 0, "Давление:");
+            MyButton Help_Choose_Task = new MyButton("Help_Choose_Task", 70, 18, 0, 0, 7, "Справка");
+            Help_Choose_Task.VerticalAlignment = VerticalAlignment.Bottom;
+            Help_Choose_Task.Background = Brushes.DarkGreen;
+            Help_Choose_Task.FontSize = 12;
+            Help_Choose_Task.Click += Help_Choose_Task_Click;
 
-            MyTextBox Pressure_Input = new MyTextBox("Pressure_Input", 88, 380, 226, 0, 0);
-            Pressure_Input.TextChanged += Pressure_Input_TextChanged;
+            MyButton OpenCredits = new MyButton("OpenCredits", 100, 30, 300, 0, 0, "Разработчики");
+            OpenCredits.Background = Brushes.DarkGreen;
+            OpenCredits.Click += OpenCredits_Click;
 
-            MyComboBox Pressure_Measure_Choose = new MyComboBox("Pressure_Measure_Choose", 90, 470, 226, 0, 0);
-            Pressure_Measure_Choose.SelectedIndex = 0;
-            Pressure_Measure_Choose.Items.Add("МПа");
-            Pressure_Measure_Choose.Items.Add("мм.рт.ст.");
-            Pressure_Measure_Choose.Items.Add("бар");
-            Pressure_Measure_Choose.SelectionChanged += Pressure_Measure_Choose_SelectionChanged;
 
-            MyLabel Pressure_Input_Help = new MyLabel("Pressure_Input_Help", 375, 246, 0, 0, "Пример: '20'; '12.7'", 10);
-
-            MyLabel Temperature_lbl = new MyLabel("Temperature_lbl", 280, 272, 0, 0,"Температура:");
-
-            MyTextBox Temperature_Input = new MyTextBox("Temperature_Input", 88, 380, 272, 0, 0);
-            Temperature_Input.TextChanged += Temperature_Input_TextChanged;
-
-            MyComboBox Temperature_Measure_Choose = new MyComboBox("Temperature_Measure_Choose", 90, 470, 272, 0, 0);
-            Temperature_Measure_Choose.SelectedIndex = 0;
-            Temperature_Measure_Choose.Items.Add("Цельсий");
-            Temperature_Measure_Choose.Items.Add("Кельвин");;
-            Temperature_Measure_Choose.SelectionChanged += Temperature_Measure_Choose_SelectionChanged;
-
-            MyLabel Temperature_Input_Help = new MyLabel("Temperature_Input_Help", 375, 292, 0, 0, "Пример: '25'; '293.15'", 10);
-
-            MyButton Next_1 = new MyButton("Next_1", 100, 0, 0, 30, 30, "Далее");
-            Next_1.Height = 30;
-            Next_1.HorizontalAlignment = HorizontalAlignment.Right;
-            Next_1.VerticalAlignment = VerticalAlignment.Bottom;
-            Next_1.Click += Next_1_Click;
-
-            MyButton Help = new MyButton("Help", 100, 30, 0, 0, 30, "Помощь");
-            Help.Height = 30;
-            Help.HorizontalAlignment = HorizontalAlignment.Left;
-            Help.VerticalAlignment = VerticalAlignment.Bottom;
-
-            Help.Click += Help_Click;
-
-            MyButton Liquid_Add = new MyButton("Liquid_Add", 200, 300, 320, 0, 0,"Добавление новой жидкости");
-            Liquid_Add.Height = 30;
-            Liquid_Add.Visibility = Visibility.Hidden;
-            Liquid_Add.Click += Liquid_Add_Click;
-
-            MyButton Liquid_Solution_Add = new MyButton("Liquid_Add", 200, 300, 320, 0, 0, "Добавление новой смеси");
-            Liquid_Solution_Add.Height = 30;
-            Liquid_Solution_Add.Visibility = Visibility.Hidden;
-            Liquid_Solution_Add.Click += Liquid_Solution_Add_Click;
-
+            Image First_Img_Top = new Image()
+            {
+                Width = 900,
+                Height = 90,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Name = "First_Img_Top",
+                Margin = new Thickness(0, 0, 0, 0),
+                //Source = new BitmapSource(C:\EasyPACT\EasyPACT_Graphic\Images\favicon.gif)
+            };
             
+            BitmapImage First_Img_Top_bi = new BitmapImage();
+            First_Img_Top_bi.BeginInit();
+            First_Img_Top_bi.UriSource = new Uri(@"C:\EasyPACT\EasyPACT_Graphic\EasyPACT_First.jpg");
+            First_Img_Top_bi.EndInit();
+            First_Img_Top.Source = First_Img_Top_bi;
 
-            Grid container_1 = new Grid();
-            container_1.Name = "container_1";
-            container_1.Children.Add(Liquid_type_lbl);//0
-            container_1.Children.Add(Liquid_type);//1
-            container_1.Children.Add(Liquid_lbl);//2
-            container_1.Children.Add(Liquid);//3
-            container_1.Children.Add(Liquid_parameters_lbl);//4
-            container_1.Children.Add(Pressure_lbl);//5
-            container_1.Children.Add(Pressure_Input);//6
-            container_1.Children.Add(Pressure_Measure_Choose);//7
-            container_1.Children.Add(Temperature_lbl);//8
-            container_1.Children.Add(Temperature_Input);//9
-            container_1.Children.Add(Temperature_Measure_Choose);//10
-            container_1.Children.Add(Next_1);//11
-            container_1.Children.Add(Help);//12
-            container_1.Children.Add(Liquid_Add);//13
-            container_1.Children.Add(Liquid_Solution_Add);//14
-            container_1.Children.Add(Pressure_Input_Help);//15
-            container_1.Children.Add(Temperature_Input_Help);//16
+            Image First_Img_Bottom = new Image()
+            {
+                Width = 900,
+                Height = 50,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Name = "First_Img_Bottom",
+                Margin = new Thickness(0, 366, 0, 0),
+                //Source = new BitmapSource(C:\EasyPACT\EasyPACT_Graphic\Images\favicon.gif)
+            };
 
-            this.Content = container_1;
-            this.Width = 650;
-            this.Height = 450;
+            BitmapImage First_Img_Bottom_bi = new BitmapImage();
+            First_Img_Bottom_bi.BeginInit();
+            First_Img_Bottom_bi.UriSource = new Uri(@"C:\EasyPACT\EasyPACT_Graphic\EasyPACT_Bottom_First.jpg");
+            First_Img_Bottom_bi.EndInit();
+            First_Img_Bottom.Source = First_Img_Bottom_bi;
             
-        }
+            Rectangle exampleRectangle = new Rectangle();
 
-        private void Liquid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var grid = this.Content as Grid;
-            var Liquid_type = grid.Children[1] as MyComboBox;
-            var Liquid = grid.Children[3] as MyComboBox;
-            var Liquid_Add = grid.Children[13] as MyButton;
-            var Liquid_Solution_Add = grid.Children[14] as MyButton;
-
-            if ((Liquid_type.SelectedIndex == 0) && (Liquid.SelectedIndex == Liquid.Items.Count - 1))
-                Liquid_Add.Visibility = Visibility.Visible;
-            else
-                Liquid_Add.Visibility = Visibility.Hidden;
-
-            if ((Liquid_type.SelectedIndex == 1) && (Liquid.SelectedIndex == Liquid.Items.Count - 1))
-                Liquid_Solution_Add.Visibility = Visibility.Visible;
-            else
-                Liquid_Solution_Add.Visibility = Visibility.Hidden;
-                /*
-            {
-                
-                Liquid_Add.Visibility = Visibility.Visible;
-                Liquid_Add.Margin = new Thickness(26,80,0,0);
-                Liquid_parameters_lbl.Margin = new Thickness(85, 110, 0, 0);
-                Pressure_lbl.Margin = new Thickness(69, 144, 0, 0);
-                Pressure_Input.Margin = new Thickness(178, 146, 0, 0);
-                Pressure_Measure_lbl.Margin = new Thickness(282, 144, 0, 0);
-                Pressure_Measure_Choose.Margin = new Thickness(404, 146, 0, 0);
-                Temperature_lbl.Margin = new Thickness(26, 178, 0, 110);
-                Temperature_Input.Margin = new Thickness(178, 178, 0, 0);
-                Temperature_Measure_lbl.Margin = new Thickness(282, 176, 0, 0);
-                Temperature_Measure_Choose.Margin = new Thickness(404, 178, 0, 0);
-            }
-            else
-                Liquid_Add.Visibility = Visibility.Hidden;
-                 */
-        }
-
-        private void Liquid_type_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var grid = this.Content as Grid;
-            var Liquid_type = grid.Children[1] as MyComboBox;
-            var Liquid = grid.Children[3] as MyComboBox;
-
-            if (Liquid == null)
-                return;
-            if(Liquid.Items.Count != 0)
-                Liquid.Items.Clear();
-            if (Liquid_type.SelectedIndex == 0)
-            {
-                foreach (var a in Database.Query("select name from liquid_list")[0])
-                {
-                    Liquid.Items.Add(a);
-                }
-                Liquid.Items.Add("Добавить жидкость...");
-                Liquid.SelectedIndex = 0;
-            }
-
-            if (Liquid_type.SelectedIndex == 1)
-            {
-                if (Liquid.Items.Count != 0)
-                    Liquid.Items.Clear();
-                var id1 = Database.Query("select id1 from boiling_points_from_composition")[0];
-                var id2 = Database.Query("select id2 from boiling_points_from_composition")[0];
-                for (int i = 1; i < id1.Count; i++)
-                {
-                    if ((id1[i-1] == id1[i]) && (id2[i-1] == id2[i]))
-                    {
-                        id1.RemoveAt(i);
-                        id2.RemoveAt(i);
-                        i--;
-                    }
-                }
-
-                for (int i = 0; i < id1.Count; i++)
-                {
-                    var id1_name = Database.Query(String.Format("select name from liquid_list where id={0}",id1[i]))[0][0];
-                    var id2_name = Database.Query(String.Format("select name from liquid_list where id={0}", id2[i]))[0][0];
-                    Liquid.Items.Add(String.Format("{0} - {1}",id1_name,id2_name));
-                }
-                Liquid.Items.Add("Добавить смесь...");
-                Liquid.SelectedIndex = 0;
-            }
-             
-        }
-
-        private void Pressure_Input_TextInput(object sender, TextCompositionEventArgs e)
-        {
+            LinearGradientBrush grad = new LinearGradientBrush();
+            grad.StartPoint = new Point(0.5, 0.0);
+            grad.EndPoint = new Point(0.5, 1.0);
+            grad.GradientStops.Add(new GradientStop(Colors.White, 0.4));
+            //grad.GradientStops.Add(new GradientStop(Colors.DarkGreen, 1.0));
+            //grad.Opacity = 10.0;*/
             /*
-            var grid = this.Content as Grid;
-            var Pressure_Input = grid.Children[6] as TextBox;
-             */
-        }
-
-        //double Pressure_In = -10;
-        private void Pressure_Input_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            /*
-            var grid = this.Content as Grid;
-            var Pressure_Measure_Choose = grid.Children[7] as MyComboBox;
-            var Pressure_Input = grid.Children[6] as MyTextBox;
-            double result = 0;
-            if (double.TryParse(Pressure_Input.Text, out result) == true)
-            {
-                MyLabel PressureInputError2 = new MyLabel("PressureInputError2", 200, 0, 40, 0, 0, "норм");
-                grid.Children.Add(PressureInputError2);
-
-                if (Pressure_Input.Text.Length > 0)
-                    Pressure_In = int.Parse(Pressure_Input.Text);
-                else
-                    Pressure_In = -10;
-            }
-            else
-            {
-                MyLabel PressureInputError = new MyLabel("PressureInputError", 200, 0, 0, 0, 0, "Введено неправильное значение.");
-                grid.Children.Add(PressureInputError);
-            }
-            */ 
-            
-            /*
-            if ((Pressure_Measure_Choose.SelectedIndex == 0) && (Pressure_In >= 0))
-            {
-                Pressure_In *= 760;
-                MyLabel proba = new MyLabel("proba", 100, 0, 0, 0, 0, Pressure_In.ToString() + " мм.рт.ст.");
-                grid.Children.Add(proba);
-            }
-
-            if ((Pressure_Measure_Choose.SelectedIndex == 2) && (Pressure_In >= 0))
-            {
-                Pressure_In = 100000 * Pressure_In / 101325 * 760;
-                MyLabel proba = new MyLabel("proba", 100, 0, 30, 0, 0, Pressure_In.ToString() + " мм.рт.ст.");
-                grid.Children.Add(proba);
-            }*/
-        }
-
-        private void Pressure_Measure_Choose_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            /*
-            var grid = this.Content as Grid;
-            var Pressure_Measure_Choose = grid.Children[7] as MyComboBox;
-
-            if ((Pressure_Measure_Choose.SelectedIndex == 0) && (Pressure_In >= 0))
-            {
-                Pressure_In *= 760;
-                MyLabel proba = new MyLabel("proba", 100, 0, 0, 0, 0, Pressure_In.ToString() + " мм.рт.ст.");
-                grid.Children.Add(proba);
-            }
-
-            if ((Pressure_Measure_Choose.SelectedIndex == 2) && (Pressure_In >= 0))
-            {
-                Pressure_In = 100000 * Pressure_In / 101325 * 760;
-                MyLabel proba = new MyLabel("proba", 100, 0, 30, 0, 0, Pressure_In.ToString() + " мм.рт.ст.");
-                grid.Children.Add(proba);
-            }
-             */
-        }
-
-        //int Temperature_In = -10;
-        private void Temperature_Input_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            /*
-            var grid = this.Content as Grid;
-            var Temperature_Measure_Choose = grid.Children[10] as MyComboBox;
-            var Temperature_Input = grid.Children[9] as MyTextBox;
-            if (Temperature_Input.Text.Length > 0)
-                Temperature_In = int.Parse(Temperature_Input.Text);
-            else
-                Temperature_In = -10;
-            if ((Temperature_Measure_Choose.SelectedIndex == 1) && (Temperature_In >= 0))
-            {
-                Temperature_In += 273;
-            }
-             */
-        }
-
-        private void Temperature_Measure_Choose_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            /*
-            var grid = this.Content as Grid;
-            var Temperature_Measure_Choose = grid.Children[10] as MyComboBox;
-
-            if ((Temperature_Measure_Choose.SelectedIndex == 1) && (Temperature_In >= 0))
-            {
-                Temperature_In += 273;
-            }
-             */
-        }
-
-        double Pressure_In = 0;
-        double Temperature_In = 0;
-        private void Next_1_Click(object sender, RoutedEventArgs e)
-        {
-            bool g = true;
-            var grid = this.Content as Grid;
-            var Liquid = grid.Children[3] as MyComboBox;
-            var Pressure_Input = grid.Children[6] as TextBox;
-            var Pressure_Measure_Choose = grid.Children[7] as MyComboBox;
-            var Temperature_Input = grid.Children[9] as TextBox;
-            var Temperature_Measure_Choose = grid.Children[10] as MyComboBox;
-            double result = 0;
-
-            if ((double.TryParse(Pressure_Input.Text, out result) == false) ||
-                (double.TryParse(Temperature_Input.Text, out result) == false) ||
-                (Liquid.SelectedIndex == Liquid.Items.Count - 1))
-                g = false;
-
-            if (g == true)
-            {
-                Pressure_In = double.Parse(Pressure_Input.Text);
-                Temperature_In = double.Parse(Temperature_Input.Text);
-
-                if (Pressure_Measure_Choose.SelectedIndex == 0)
-                {
-                    Pressure_In *= 760;
-                }
-                if (Pressure_Measure_Choose.SelectedIndex == 2)
-                {
-                    Pressure_In = 100000 * Pressure_In / 101325 * 760;
-                }
-                if (Temperature_Measure_Choose.SelectedIndex == 1)
-                {
-                    Temperature_In += 273;
-                }
-                MessageBox.Show("Все круто!");
-                Window_Add_Pipeline New_Pipeline = new Window_Add_Pipeline();
-                New_Pipeline.Show();
-            }
-
-            if (g == false)
-            {
-                MessageBox.Show("Некоторые поля не заполнены/введены неверно.");
-            }
-            
-        }
-
-        private void Help_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Выбран пункт Помощь");
-        }
-        
-        private void Liquid_Add_Click(object sender, RoutedEventArgs e)
-        {
-            Window_Add_Liquid New_Liquid = new Window_Add_Liquid();
-            New_Liquid.Show();
-        }
-
-        private void Liquid_Solution_Add_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Выбрано добавление новой смеси.");
-            /*
-            Window_Add_Solution New_Solution = new Window_Add_Solution();
-            New_Solution.Show();
+            grad.GradientStops.Add(new GradientStop(Colors.Yellow, 0.4));
+            //grad.GradientStops.Add(new GradientStop(Colors.Orange, 0.5));
+            grad.GradientStops.Add(new GradientStop(Colors.Red, 1.0));
             */
+
+            exampleRectangle.Fill = grad;
+
+            Grid Hello_Window = new Grid();
+            Hello_Window.Name = "Hello_Window";
+            Hello_Window.Children.Add(Welcome);
+            Hello_Window.Children.Add(Choose_Task_lbl);
+            Hello_Window.Children.Add(Choose_Task_First);
+            Hello_Window.Children.Add(Choose_Task_Second);
+            Hello_Window.Children.Add(First_Img_Top);
+            Hello_Window.Children.Add(First_Img_Bottom);
+            Hello_Window.Children.Add(Next_0);
+            Hello_Window.Children.Add(Help_Choose_Task);
+            Hello_Window.Children.Add(OpenCredits);
+
+
+            this.Content = Hello_Window;
+            this.Title = "Выбор решаемой задачи - EasyPACT";
+            this.Background = grad;
+            this.Width = 908;
+            this.Height = 450;
+            this.MinWidth = 908;
+            this.MaxWidth = 908;
+            this.MinHeight = 450;
+            this.MaxHeight = 450;
         }
-        
-        
-        
+
+        private void Next_0_Click(object sender, RoutedEventArgs e)
+        {
+            Begin_Parameters bpm = new Begin_Parameters();
+            bpm.Show();
+        }
+
+        private void Help_Choose_Task_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Выбран пункт Справка");
+        }
+
+        private void OpenCredits_Click(object sender, RoutedEventArgs e)
+        {
+            Credits crd = new Credits();
+            crd.Show();
+        }
 
     }
 }
