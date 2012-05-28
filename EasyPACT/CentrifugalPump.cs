@@ -26,26 +26,27 @@ namespace EasyPACT
         /// Оптимальная частота вращения вала в об/с.
         /// </summary>
         protected double _OptimalFrequencyOfRotation;
+
         /// <summary>
         /// КПД насоса.
         /// </summary>
-        protected double _Efficiency;
+        public double Efficiency { get; private set; }
         /// <summary>
         /// Производительность насоса в м3/с.
         /// </summary>
-        protected double _Productivity;
+        public double Productivity { get; private set; }
         /// <summary>
         /// Напор насоса в м столба жидкости.
         /// </summary>
-        protected double _Pressure;
+        public double Pressure { get; private set; }
         /// <summary>
         /// Частота вращения вала в об/с.
         /// </summary>
-        protected double _FrequencyOfRotation;
+        public double FrequencyOfRotation { get; private set; }
         /// <summary>
         /// Тип электродвигателя.
         /// </summary>
-        public readonly string MotorType;
+        public string MotorType { get; private set; }
         /// <summary>
         /// Номинальная мощность электродвигателя в кВт.
         /// </summary>
@@ -53,7 +54,7 @@ namespace EasyPACT
         /// <summary>
         /// КПД электродвигателя.
         /// </summary>
-        protected double _MotorEfficiency;
+        public double MotorEfficiency { get; private set; }
 
         /// <summary>
         /// Центробежный насос.
@@ -70,30 +71,33 @@ namespace EasyPACT
             this._OptimalProductivity = Convert.ToDouble(list[1][0]);
             this._OptimalPressure = Convert.ToDouble(list[2][0]);
             this._OptimalFrequencyOfRotation = Convert.ToDouble(list[3][0]);
-            this._Efficiency = Convert.ToDouble(list[4][0]);
+            this.Efficiency = Convert.ToDouble(list[4][0]);
             this.MotorType = list[5][0];
             this._MotorCapacity = Convert.ToDouble(list[6][0]);
-            this._MotorEfficiency = Convert.ToDouble(list[7][0]);
+            this.MotorEfficiency = Convert.ToDouble(list[7][0]);
         }
-        /// <summary>
+        /*/// <summary>
         /// Пуск насоса с заданной частотой вращения.
         /// </summary>
         /// <param name="frequency">Частота вращения в об/мин.</param>
-        public void Run(double frequency)
+        private void Run(double frequency)
         {
             frequency /= 60;
             this._FrequencyOfRotation = frequency;
             this._Productivity = this._OptimalProductivity*frequency/this._OptimalFrequencyOfRotation;
             this._Pressure = this._OptimalPressure*Math.Pow(frequency/this._OptimalFrequencyOfRotation, 2);
             Network.Get().SetProductivity(this._Productivity);
-        }
+        }*/
+        /// <summary>
+        /// Настраивает насос на заданную подачу.
+        /// </summary>
+        /// <param name="V">Необходимая подача в м3/с.</param>
         public void SetProductivity(double V)
         {
-            this._Productivity = V;
-            this._FrequencyOfRotation = this._Productivity*this._OptimalFrequencyOfRotation/this._OptimalProductivity;
-            this._Pressure = this._OptimalPressure*
-                             Math.Pow(this._FrequencyOfRotation/this._OptimalFrequencyOfRotation, 2);
-            //Network.Get().SetProductivity(this, this._Productivity);
+            this.Productivity = V;
+            this.FrequencyOfRotation = this.Productivity*this._OptimalFrequencyOfRotation/this._OptimalProductivity;
+            this.Pressure = this._OptimalPressure*
+                             Math.Pow(this.FrequencyOfRotation/this._OptimalFrequencyOfRotation, 2);
         }
     }
 }
