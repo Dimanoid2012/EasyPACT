@@ -1,4 +1,6 @@
-﻿namespace EasyPACT
+﻿using System;
+
+namespace EasyPACT
 {
     /// <summary>
     /// Данный класс описывает физические свойства 
@@ -72,7 +74,22 @@
             this.ThermalCapacity = Calculation.ThermalCapacity(this);
             this._ViscosityDynamic = Calculation.ViscosityDynamic(this)/1000;
             this.VaporizationHeat = Calculation.VaporizationHeat(this);
-            this.ThermalConductivity = Calculation.ThermalConductivity(this);
+            //this.ThermalConductivity = Calculation.ThermalConductivity(this);
+            this.SetThermalConductivity();
+        }
+        /// <summary>
+        /// Теплопроводность жидкости при 30 градусах Цельсия.
+        /// </summary>
+        protected double ThermalConductivity30
+        {
+            get { return 4.22e-8 * this.ThermalCapacity * this.Density * Math.Pow(this.Density / this.MolarMass, 0.33); }
+        }
+        /// <summary>
+        /// Теплопроводность жидкости при текущей температура.
+        /// </summary>
+        public void SetThermalConductivity()
+        {
+            this.ThermalConductivity = this.ThermalConductivity30 * (1 - 0.002 * (this.Temperature - 30));
         }
     }
 }

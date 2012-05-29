@@ -51,7 +51,7 @@ namespace EasyPACT
         /// и прочие особенности трубопровода постоянного произвольного сечения.
         /// </summary>
         /// <param name="materialId">ID материала, из которого изготовлен трубопровод.</param>
-        /// /// <param name="type">Тип трубопровода.</param>
+        /// <param name="type">Тип трубопровода.</param>
         /// <param name="square">Площадь поперечного сечения трубопровода в квадратных метрах.</param>
         /// <param name="perimeter">Величина смоченного периметра трубопровода в метрах.</param>
         /// <param name="width">Толщина стенок в метрах.</param>
@@ -82,7 +82,7 @@ namespace EasyPACT
             get { return this._Diameter; }
         }
         /// <summary>
-        /// Внешний диаметр трубопровода.
+        /// Внешний диаметр трубопровода в метрах.
         /// </summary>
         public double ExternalDiameter
         {

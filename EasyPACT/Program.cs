@@ -58,7 +58,6 @@ namespace EasyPACT
             for (var i = 0; i < 7; i++)
                 pip.AddLocalResistance("4 90 1");
             var lip2 = new LiquidInPipeline(liq, pip);
-            //var pump = new CentrifugalPump(36);
             var net = Network.Create(lip2, lip);
             net.SetProductivity(30000/3600.0);
             Network.Get().ChooseHeatExchanger(liq.BoilingPoint, liq.BoilingPoint + 20);
@@ -125,6 +124,8 @@ namespace EasyPACT
             Console.WriteLine("Для смеси {0} с параметрами t={1} и p={2} подходит ТО {3}, чтобы ее вскипятить.", liq.Id,
                               liq.Temperature, liq.Pressure, net.HeatExchanger.Id);
             Console.WriteLine("Выбранный насос: {0}.",net.Pump.Brand);
+            var liq2 = new LiquidPure("6", 20, 760);
+            Console.WriteLine("Коэффициент теплопроводности ацетона: {0}",liq2.ThermalConductivity / 1.163);
             Console.ReadKey();
         }
     }

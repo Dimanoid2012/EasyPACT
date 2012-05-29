@@ -281,11 +281,5 @@ namespace EasyPACT
         {
             return liq.MassFraction*liq.LB.ThermalCapacity + (1 - liq.MassFraction)*liq.HB.ThermalCapacity;
         }
-        static public double ThermalConductivity(LiquidPure liq)
-        {
-            var table = Database.Query(String.Format("SELECT temperature,thermal_conductivity FROM thermal_conductivities WHERE id='{0}'", liq.Id));
-            var data = table.Select(list => list.ConvertAll(Convert.ToDouble)).ToList();
-            return LinearInterpolation(data, liq.Temperature);
-        }
     }
 }

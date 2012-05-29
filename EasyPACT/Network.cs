@@ -5,7 +5,7 @@ namespace EasyPACT
 {
     /// <summary>
     /// Класс, описывающий систему целиком и обеспечивающий
-    /// взаимодействие между объектами. Одиночка.
+    /// взаимодействие между объектами.
     /// </summary>
     public sealed class Network
     {
@@ -68,7 +68,7 @@ namespace EasyPACT
             return _isExist ? _network : null;
         }
         /// <summary>
-        /// Устанавливает производительность сети. Вызвать может только насос, установленный в сети.
+        /// Устанавливает производительность сети.
         /// </summary>
         /// <param name="productivity">Новая производительность, кг/с.</param>
         public bool SetProductivity(double productivity)
@@ -87,7 +87,7 @@ namespace EasyPACT
         /// <summary>
         /// Подобрать насос к заданной сети.
         /// </summary>
-        /// <param name="liftingHeight">Высота подъема жидкости.</param>
+        /// <param name="liftingHeight">Высота подъема жидкости в метрах.</param>
         public void ChooseCentrifugalPump(double liftingHeight)
         {
             var massFlow = this.Productivity;
@@ -112,12 +112,11 @@ namespace EasyPACT
         /// <summary>
         /// Подобрать теплообменник к заданной сети.
         /// </summary>
-        /// <param name="temperatureLiquid">Требуемая на выходе температура.</param>
-        /// <param name="temperatureSteam">Температура греющего пара.</param>
+        /// <param name="temperatureLiquid">Требуемая на выходе температура в градусах Цельсия.</param>
+        /// <param name="temperatureSteam">Температура греющего пара в градусах Цельсия.</param>
         public void ChooseHeatExchanger(double temperatureLiquid,double temperatureSteam)
         {
             var t = (temperatureLiquid + this.ForcingLine.Liquid.Temperature)/2; // Средняя температура
-            //this.HeatExchanger.SetLiquidInPipes(this.ForcingLine.Liquid);
             Liquid liq;
             if (this.ForcingLine.Liquid.GetType().ToString().IndexOf("Pure") != -1)
                 liq = new LiquidPure(this.ForcingLine.Liquid.Id, t, this.ForcingLine.Liquid.Pressure);
@@ -129,7 +128,6 @@ namespace EasyPACT
             var steam = new LiquidPure("10", temperatureSteam, Calculation.Pressure(10, temperatureSteam));
             steam.Evaporate();
             liq.Temperature = t;
-            //this.Productivity = 32 * 1000 / 3600 / liq.Density; // УДАЛИТЬ
             var Q = this.Productivity*liq.ThermalCapacity/1000*
                     (temperatureLiquid - this.ForcingLine.Liquid.Temperature);
             var G1 = Q/steam.VaporizationHeat;
