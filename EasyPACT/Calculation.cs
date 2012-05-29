@@ -193,7 +193,7 @@ namespace EasyPACT
                 case 5:
                     table =
                         Database.Query(
-                            String.Format("SELECT D_condition,koefficient FROM XIII_bend WHERE"));
+                            String.Format("SELECT D_condition,koefficient FROM XIII_bend"));
                     data = table.Select(list => list.ConvertAll(Convert.ToDouble)).ToList();
                     return LinearInterpolation(data, type[1]);
                 case 6:

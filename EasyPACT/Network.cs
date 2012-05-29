@@ -169,7 +169,7 @@ namespace EasyPACT
                 var K = 1/(1/a1 + r + 1/a2);
                 F = Q*1000/K/dt;
                 var zap = (he.SurfaceArea - F)/he.SurfaceArea;
-                if((zap < 0.1 | zap > 0.3) & list.Count > 0)
+                if((zap < 0.1) & list.Count > 1)
                 {
                     list.RemoveAt(0);
                     id = list.First();

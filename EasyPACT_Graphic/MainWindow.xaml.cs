@@ -32,6 +32,14 @@ namespace EasyPACT_Graphic
 
             MyLabel Welcome = new MyLabel("Welcome", 30, 130, 0, 0, "Добро пожаловать в EasyPACT!", 16);
 
+            MyLabel Task_lbl = new MyLabel("Task_lbl", 30, 175, 0, 0, "Задача, которую решает программа:", 13);
+
+            MyLabel Task1 = new MyLabel("Task1", 50, 205, 0, 0, "Расчет теплообменного аппарата и насоса", 14);
+            Task1.FontWeight = FontWeights.Bold;
+
+            MyLabel Task2 = new MyLabel("Task2", 50, 230, 0, 0, "по заданным арматуре и состояниям жидкости на входе и на выходе из системы", 14);
+            Task2.FontWeight = FontWeights.Bold;
+            /*
             MyLabel Choose_Task_lbl = new MyLabel("Choose_Task_lbl", 30, 175, 0, 0, "Выберите задачу, которую требуется решить:", 13);
             RadioButton Choose_Task_First = new RadioButton()
             {
@@ -57,25 +65,27 @@ namespace EasyPACT_Graphic
                 FontSize = 13,
                 FontWeight = FontWeights.Bold
             };
-
-            MyButton Next_0 = new MyButton("Next_0", 150, 0, 0, 20, 7, "Далее");
+            */
+            MyButton Next_0 = new MyButton("Next_0", 150, 0, 0, 20, 7, "Продолжить");
             Next_0.HorizontalAlignment = HorizontalAlignment.Right;
             Next_0.VerticalAlignment = VerticalAlignment.Bottom;
             Next_0.Background = Brushes.DarkGreen;
             Next_0.FontSize = 12;
-            Next_0.Foreground = Brushes.White;
+            //Next_0.FontWeight = FontWeights.Bold;
+            Next_0.Foreground = Brushes.LightGray;
             Next_0.Click += Next_0_Click;
 
-            MyButton Help_Choose_Task = new MyButton("Help_Choose_Task", 70, 18, 0, 0, 7, "Справка");
+            MyButton Help_Choose_Task = new MyButton("Help_Choose_Task", 80, 18, 0, 0, 7, "Разработчики");
+            Help_Choose_Task.Foreground = Brushes.LightGray;
             Help_Choose_Task.VerticalAlignment = VerticalAlignment.Bottom;
             Help_Choose_Task.Background = Brushes.DarkGreen;
-            Help_Choose_Task.FontSize = 12;
-            Help_Choose_Task.Click += Help_Choose_Task_Click;
-
+            Help_Choose_Task.FontSize = 10;
+            Help_Choose_Task.Click += OpenCredits_Click;
+            /*
             MyButton OpenCredits = new MyButton("OpenCredits", 100, 30, 300, 0, 0, "Разработчики");
             OpenCredits.Background = Brushes.DarkGreen;
             OpenCredits.Click += OpenCredits_Click;
-
+            */
 
             Image First_Img_Top = new Image()
             {
@@ -130,14 +140,14 @@ namespace EasyPACT_Graphic
             Grid Hello_Window = new Grid();
             Hello_Window.Name = "Hello_Window";
             Hello_Window.Children.Add(Welcome);
-            Hello_Window.Children.Add(Choose_Task_lbl);
-            Hello_Window.Children.Add(Choose_Task_First);
-            Hello_Window.Children.Add(Choose_Task_Second);
+            Hello_Window.Children.Add(Task_lbl);
+            Hello_Window.Children.Add(Task1);
+            Hello_Window.Children.Add(Task2);
             Hello_Window.Children.Add(First_Img_Top);
             Hello_Window.Children.Add(First_Img_Bottom);
             Hello_Window.Children.Add(Next_0);
             Hello_Window.Children.Add(Help_Choose_Task);
-            Hello_Window.Children.Add(OpenCredits);
+            //Hello_Window.Children.Add(OpenCredits);
 
 
             this.Content = Hello_Window;
@@ -156,12 +166,12 @@ namespace EasyPACT_Graphic
             Begin_Parameters bpm = new Begin_Parameters();
             bpm.Show();
         }
-
+        /*
         private void Help_Choose_Task_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Выбран пункт Справка");
         }
-
+        */
         private void OpenCredits_Click(object sender, RoutedEventArgs e)
         {
             Credits crd = new Credits();

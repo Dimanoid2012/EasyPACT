@@ -47,10 +47,12 @@ namespace EasyPACT_Graphic
             MyLabel Students = new MyLabel("Students", 30, 170, 0, 0, "Выполнили студенты группы К-31");
 
             MyLabel Dima = new MyLabel("Dima", 95, 205, 0, 0, "Вильшанский Дмитрий Владимирович", 14);
+            Dima.FontWeight = FontWeights.Bold;
 
             MyLabel Dima_Info = new MyLabel("Dima_Info", 95, 225, 0, 0, "Разработка расчетной части программы", 10);
 
             MyLabel Nikita = new MyLabel("Nikita", 95, 270, 0, 0, "Шорыгин Никита Валерьевич", 14);
+            Nikita.FontWeight = FontWeights.Bold;
 
             MyLabel Nikita_Info = new MyLabel("Nikita_Info", 95, 290, 0, 0, "Разработка пользовательского интерфейса", 10);
 
@@ -86,9 +88,9 @@ namespace EasyPACT_Graphic
             Nikita_Photo_bi.EndInit();
             Nikita_Photo.Source = Nikita_Photo_bi;
 
-            MyLabel Supervisor = new MyLabel("Supervisor", 30, 335, 0, 0, "Руководитель проекта: Иванов Святослав Игоревич", 13);
+            MyLabel Supervisor = new MyLabel("Supervisor", 3, 335, 0, 0, "Руководитель проекта: Иванов Святослав Игоревич", 12);
 
-            MyLabel Dean = new MyLabel("Dean", 57, 360, 0, 0, "Декан факультета: Меньшутина Наталья Васильевна", 13);
+            MyLabel Dean = new MyLabel("Dean", 3, 360, 0, 0, "Декан факультета: д.т.н., проф. Меньшутина Наталья Васильевна", 12);
 
             MyLabel Copyright = new MyLabel("Copyright", 3, 0, 0, -2, "Copyright 2012", 8);
             Copyright.VerticalAlignment = VerticalAlignment.Bottom;
@@ -96,10 +98,11 @@ namespace EasyPACT_Graphic
             MyLabel AllRightsReserved = new MyLabel("", 3, 0, 0, -12, "Все права защищены", 8);
             AllRightsReserved.VerticalAlignment = VerticalAlignment.Bottom;
 
-            MyButton Close_Credits = new MyButton("", 90, 0, 0, 5, 3, "Закрыть");
-            Close_Credits.Height = 15;
+            MyButton Close_Credits = new MyButton("", 90, 0, 0, 5, 2, "З а к р ы т ь");
+            Close_Credits.Height = 16;
             Close_Credits.FontSize = 7;
             Close_Credits.Background = Brushes.DarkGreen;
+            Close_Credits.Foreground = Brushes.LightGray;
             Close_Credits.HorizontalAlignment = HorizontalAlignment.Right;
             Close_Credits.VerticalAlignment = VerticalAlignment.Bottom;
             Close_Credits.Click += Close_Credits_Click;

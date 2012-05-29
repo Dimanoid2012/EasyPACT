@@ -118,5 +118,11 @@ namespace EasyPACT
             this.LiquidIn = liq;
             this.LiquidInCase = new LiquidInPipeline(liq, this.Case);
         }
+
+        public override string ToString()
+        {
+            return "Диаметр кожуха " + Diameter.ToString() + "м; " + (NumberOfPipes/NumberOfCourses).ToString() + " труб на ход, длина труб " + PipesLength.ToString() + "м.";
+        }
+
     }
 }

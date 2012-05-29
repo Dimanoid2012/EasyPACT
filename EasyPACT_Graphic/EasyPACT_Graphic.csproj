@@ -57,6 +57,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -83,6 +84,8 @@
     <Compile Include="PictureBox.cs" />
     <Compile Include="QuestionWindow.cs" />
     <Compile Include="Resistance.cs" />
+    <Compile Include="ResistanceOut.cs" />
+    <Compile Include="ResultWindow.cs" />
     <Compile Include="Window_Add_Liquid.cs" />
     <Compile Include="Window_Add_Pipeline.cs" />
     <Compile Include="Window_Add_Solution.cs" />
@@ -154,6 +157,45 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_Add_New_Liquid.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_Begin_Parameters_Top.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_Bottom_First.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_Credits_Bottom.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_Credits_Top.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_Dima.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_First.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_New_Solution_Bottom.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_New_Solution_Top.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_Nikita.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_Pipe_Params.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_Resists.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_Results.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

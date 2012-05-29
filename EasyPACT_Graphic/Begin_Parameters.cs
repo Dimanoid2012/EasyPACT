@@ -110,15 +110,25 @@ namespace EasyPACT_Graphic
             Temperature_Out_Measure_Choose.Items.Add("Кельвин"); ;
             //Temperature_Out_Measure_Choose.SelectionChanged += Temperature_Out_Measure_Choose_SelectionChanged;
 
+            MyLabel NK_lbl = new MyLabel("NK_lbl", 601, 290, 0, 0, "Доля НК:");
+
+            MyTextBox NK = new MyTextBox("NK", 80, 670, 291, 0, 0);
+
+            MyLabel VysPod_lbl = new MyLabel("VysPod_lbl", 561, 320, 0, 0, "Высота подачи:");
+
+            MyTextBox VysPod = new MyTextBox("VysPod", 80, 670, 321, 0, 0);
+
             //MyLabel Temperature_Out_Input_Help = new MyLabel("Temperature_Out_Input_Help", 665, 327, 0, 0, "Пример: '25'; '293.15'", 10);
 
 
 
 
 
-            MyButton Next_1 = new MyButton("Next_1", 150, 0, 0, 20, 7, "Далее");
+            MyButton Next_1 = new MyButton("Next_1", 150, 0, 0, 20, 7, "Продолжить");
             Next_1.Height = 30;
             Next_1.Background = Brushes.DarkGreen;
+            Next_1.Foreground = Brushes.LightGray;
+            Next_1.FontSize = 12;
             Next_1.HorizontalAlignment = HorizontalAlignment.Right;
             Next_1.VerticalAlignment = VerticalAlignment.Bottom;
             Next_1.Click += Next_1_Click;
@@ -128,19 +138,22 @@ namespace EasyPACT_Graphic
             Help.Background = Brushes.DarkGreen;
             Help.HorizontalAlignment = HorizontalAlignment.Left;
             Help.VerticalAlignment = VerticalAlignment.Bottom;
+            Help.Foreground = Brushes.LightGray;
 
             Help.Click += Help_Click;
 
-            MyButton Liquid_Add = new MyButton("Liquid_Add", 180, 670, 0, 0, 60, "Добавление новой жидкости");
+            MyButton Liquid_Add = new MyButton("Liquid_Add", 180, 340, 0, 0, 60, "Добавление новой жидкости");
             Liquid_Add.Height = 30;
             Liquid_Add.Background = Brushes.DarkGreen;
+            Liquid_Add.Foreground = Brushes.LightGray;
             Liquid_Add.VerticalAlignment = VerticalAlignment.Bottom;
             Liquid_Add.Visibility = Visibility.Hidden;
             Liquid_Add.Click += Liquid_Add_Click;
 
-            MyButton Liquid_Solution_Add = new MyButton("Liquid_Add", 180, 670, 0, 0, 60, "Добавление новой смеси");
+            MyButton Liquid_Solution_Add = new MyButton("Liquid_Add", 180, 340, 0, 0, 60, "Добавление новой смеси");
             Liquid_Solution_Add.Height = 30;
             Liquid_Solution_Add.Background = Brushes.DarkGreen;
+            Liquid_Solution_Add.Foreground = Brushes.LightGray;
             Liquid_Solution_Add.VerticalAlignment = VerticalAlignment.Bottom;
             Liquid_Solution_Add.Visibility = Visibility.Hidden;
             Liquid_Solution_Add.Click += Liquid_Solution_Add_Click;
@@ -221,6 +234,10 @@ namespace EasyPACT_Graphic
             container_1.Children.Add(Temperature_Out_Input);//21
             container_1.Children.Add(Temperature_Out_Measure_Choose);//22
             container_1.Children.Add(Animation);//23
+            container_1.Children.Add(NK_lbl);//24
+            container_1.Children.Add(NK);//25
+            container_1.Children.Add(VysPod_lbl);//26
+            container_1.Children.Add(VysPod);//27
 
             this.Content = container_1;
             
@@ -340,7 +357,7 @@ namespace EasyPACT_Graphic
             }
         }
         */
-        double Pressure_Out = 0;
+        //double Pressure_Out = 0;
         double Temperature_Out = 0;
         /*
         private void Pressure_Out_Measure_Choose_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -390,6 +407,9 @@ namespace EasyPACT_Graphic
             var Temperature_Out_Measure_Choose = grid.Children[22] as MyComboBox;
 
             var Liquid_Type = grid.Children[1] as MyComboBox;
+            var NK = grid.Children[25] as MyTextBox;
+
+            var VysPod = grid.Children[27] as MyTextBox;
 
             double result = 0;
 
@@ -398,6 +418,28 @@ namespace EasyPACT_Graphic
                 (double.TryParse(Temperature_Out_Input.Text, out result) == false) ||
                 (Liquid.SelectedIndex == Liquid.Items.Count - 1))
                 g = false;
+
+            double NK_dou = 0;
+
+            if (double.TryParse(NK.Text, out result) == false)
+            {
+                g = false;
+            }
+            else
+            {
+                NK_dou = double.Parse(NK.Text);
+            }
+
+            double VP = 0;
+
+            if (double.TryParse(VysPod.Text, out result) == false)
+            {
+                g = false;
+            }
+            else
+            {
+                VP = double.Parse(VysPod.Text);
+            }
 
             if (g == true)
             {
@@ -442,15 +484,17 @@ namespace EasyPACT_Graphic
                     }
                     else
                     {
-                        liq = new EasyPACT.LiquidMix(id_str[Liquid.SelectedIndex], 0.5, Temperature_In, Pressure_In); // изменить долю НК
+                        liq = new EasyPACT.LiquidMix(id_str[Liquid.SelectedIndex], NK_dou, Temperature_In, Pressure_In);
                     }
-                    Window_Add_Pipeline New_Pipeline = new Window_Add_Pipeline(liq);
+                    Window_Add_Pipeline New_Pipeline = new Window_Add_Pipeline(liq,Temperature_Out,NK_dou,VP);
                     New_Pipeline.Show();
                 }
                 catch
                 {
                     MessageBox.Show("Неправильно введены параметры");
                 }
+
+                
 
                 
             }

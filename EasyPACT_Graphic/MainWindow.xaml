@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="500" Width="900">
-    <Grid>
+    <Grid Clip="{Binding}">
         <!--<Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="White" Offset="0.006" />
@@ -47,5 +47,7 @@
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="498,160,0,0" Name="comboBox3" VerticalAlignment="Top" Width="61" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="803,158,0,0" Name="comboBox4" VerticalAlignment="Top" Width="63" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="182,156,0,0" Name="comboBox5" VerticalAlignment="Top" Width="61" />-->
+        <!--<RadioButton Content="RadioButton" Height="16" HorizontalAlignment="Left" Margin="360,151,0,0" Name="radioButton1" VerticalAlignment="Top" />-->
+        <!--<Image Height="150" HorizontalAlignment="Left" Margin="274,138,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="282" Source="/EasyPACT_Graphic;component/Images/Alvin%20and%20Chipmunks%204.jpg" />-->
     </Grid>
 </Window>

@@ -56,6 +56,14 @@ namespace EasyPACT
         /// </summary>
         public double MotorEfficiency { get; private set; }
 
+        public double Capacity
+        {
+            get
+            {
+                return _MotorCapacity / Efficiency;
+            }
+        }
+
         /// <summary>
         /// Центробежный насос.
         /// </summary>
@@ -98,6 +106,10 @@ namespace EasyPACT
             this.FrequencyOfRotation = this.Productivity*this._OptimalFrequencyOfRotation/this._OptimalProductivity;
             this.Pressure = this._OptimalPressure*
                              Math.Pow(this.FrequencyOfRotation/this._OptimalFrequencyOfRotation, 2);
+        }
+        public override string ToString()
+        {
+            return "Насос " + Brand + " производительностью " + _OptimalProductivity.ToString()  + " м3/с и напором " + _OptimalPressure.ToString() + " м.";
         }
     }
 }

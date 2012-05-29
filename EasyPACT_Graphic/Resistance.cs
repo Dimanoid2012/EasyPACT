@@ -21,18 +21,27 @@ namespace EasyPACT_Graphic
     {
         LiquidInPipeline lip_In;
         LiquidInPipeline lip_Out;
+        double Temperature_Out;
+        double NK_dou;
+        double VP;
 
-        public Resistance(EasyPACT.LiquidInPipeline lip_In, EasyPACT.LiquidInPipeline lip_Out)
+        public Resistance(EasyPACT.LiquidInPipeline lip_In, EasyPACT.LiquidInPipeline lip_Out, double Temperature_Out, double NK_dou, double VP)
         {
             this.lip_In = lip_In;
             this.lip_Out = lip_Out;
+            this.Temperature_Out = Temperature_Out;
+            this.NK_dou = NK_dou;
+            this.VP = VP;
 
             Grid Grid_Add_Resistance = new MyGrid();
             Grid_Add_Resistance.Name = "Grid_Add_Resistance";
 
-            MyLabel Local_Resistance_In_lbl = new MyLabel("Local_Resistance_In_lbl", 30, 100, 0, 0, "Местные сопротивления:");
+            MyLabel Pipe_Resist_In = new MyLabel("Pipe_Resist_In", 30, 100, 0, 0, "Всасывающий трубопровод", 14);
+            Pipe_Resist_In.FontWeight = FontWeights.Bold;
 
-            MyComboBox Local_Resistance_In = new MyComboBox("Local_Resistance_In_1", 124, 200, 102, 0, 0);
+            MyLabel Local_Resistance_In_lbl = new MyLabel("Local_Resistance_In_lbl", 30, 140, 0, 0, "Местное сопротивление:");
+
+            MyComboBox Local_Resistance_In = new MyComboBox("Local_Resistance_In_1", 200, 200, 142, 0, 0);
             Local_Resistance_In.Items.Add("Выберите сопротивление");
             Local_Resistance_In.Items.Add("Вход в трубу");
             Local_Resistance_In.Items.Add("Выход и трубы");
@@ -40,21 +49,21 @@ namespace EasyPACT_Graphic
             Local_Resistance_In.Items.Add("Отвод");
             Local_Resistance_In.Items.Add("Колено");
             Local_Resistance_In.Items.Add("Вентиль нормальный");
-            Local_Resistance_In.Items.Add("Вентиль прямоточный");
-            Local_Resistance_In.Items.Add("Кран пробочный");
-            Local_Resistance_In.Items.Add("Задвижка");
+            //Local_Resistance_In.Items.Add("Вентиль прямоточный");
+            //Local_Resistance_In.Items.Add("Кран пробочный");
+            //Local_Resistance_In.Items.Add("Задвижка");
             Local_Resistance_In.SelectedIndex = 0;
             Local_Resistance_In.SelectionChanged += Local_Resistance_In_SelectionChanged;
 
             // Комбобоксы для сопротивлений
 
-            MyComboBox First = new MyComboBox("First_1", 100, 400, 102, 0, 0);
+            MyComboBox First = new MyComboBox("First_1", 200, 410, 142, 0, 0);
             First.Visibility = Visibility.Hidden;
 
-            MyComboBox Second = new MyComboBox("Second_1", 100, 510, 102, 0, 0);
+            MyComboBox Second = new MyComboBox("Second_1", 200, 620, 142, 0, 0);
             Second.Visibility = Visibility.Hidden;
 
-            MyTextBox Third = new MyTextBox("Third_1", 100, 400, 102, 0, 0);
+            MyTextBox Third = new MyTextBox("Third_1", 200, 410, 142, 0, 0);
             Third.Visibility = Visibility.Hidden;
             /*
             MyLabel Number_Local_Resistance_In_lbl = new MyLabel("Number_Local_Resistance_In_lbl", 334, 100, 0, 0, "Количество:");
@@ -67,7 +76,7 @@ namespace EasyPACT_Graphic
 
             MyComboBox Size_Choose = new MyComboBox("", 100, 620, 102, 0, 0);
             */
-            MyButton Add_New_Local_Resistance = new MyButton("Add_New_Local_Resistance", 100, 100, 130, 0, 0, "Добавить");
+            MyButton Add_New_Local_Resistance = new MyButton("Add_New_Local_Resistance", 100, 100, 170, 0, 0, "Добавить");
             Add_New_Local_Resistance.Click += Add_New_Local_Resistance_Click;
 
             ScrollBar hSBar = new ScrollBar();
@@ -85,8 +94,48 @@ namespace EasyPACT_Graphic
             Next_3.VerticalAlignment = VerticalAlignment.Bottom;
             Next_3.Background = Brushes.DarkGreen;
             Next_3.FontSize = 12;
-            Next_3.Foreground = Brushes.White;
+            Next_3.Foreground = Brushes.LightGray;
             Next_3.Click += Next_3_Click;
+
+            MyButton Help_Add_Resistance = new MyButton("Help_Add_Resistance", 70, 18, 0, 0, 7, "Справка");
+            Help_Add_Resistance.VerticalAlignment = VerticalAlignment.Bottom;
+            Help_Add_Resistance.Background = Brushes.DarkGreen;
+            Help_Add_Resistance.FontSize = 12;
+            Help_Add_Resistance.Foreground = Brushes.LightGray;
+            Help_Add_Resistance.Click += Help_Add_Resistance_Click;
+
+            Image Resistance_Img_Top = new Image()
+            {
+                Width = 900,
+                Height = 90,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Name = "Resistance_Img_Top",
+                Margin = new Thickness(0, 0, 0, 0)
+            };
+
+            var Resistance_Img_Top_bi = new BitmapImage();
+            Resistance_Img_Top_bi.BeginInit();
+            Resistance_Img_Top_bi.UriSource = new Uri(@"C:\EasyPACT\EasyPACT_Graphic\EasyPACT_Resists.jpg");
+            
+            Resistance_Img_Top_bi.EndInit();
+            Resistance_Img_Top.Source = Resistance_Img_Top_bi;
+
+            Image Resistance_Img_Bottom = new Image()
+            {
+                Width = 900,
+                Height = 50,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top,
+                Name = "Resistance_Img_Bottom",
+                Margin = new Thickness(0, 366, 0, 0)
+            };
+
+            BitmapImage Resistance_Img_Bottom_bi = new BitmapImage();
+            Resistance_Img_Bottom_bi.BeginInit();
+            Resistance_Img_Bottom_bi.UriSource = new Uri(@"C:\EasyPACT\EasyPACT_Graphic\EasyPACT_Bottom_First.jpg");
+            Resistance_Img_Bottom_bi.EndInit();
+            Resistance_Img_Bottom.Source = Resistance_Img_Bottom_bi;
 
             Grid_Add_Resistance.Children.Add(Local_Resistance_In_lbl);//0
             Grid_Add_Resistance.Children.Add(Local_Resistance_In);//1
@@ -95,8 +144,17 @@ namespace EasyPACT_Graphic
             Grid_Add_Resistance.Children.Add(First);//4
             Grid_Add_Resistance.Children.Add(Second);//5
             Grid_Add_Resistance.Children.Add(Third);//6
+            Grid_Add_Resistance.Children.Add(Resistance_Img_Bottom);//7
+            Grid_Add_Resistance.Children.Add(Next_3);//8
+            Grid_Add_Resistance.Children.Add(Help_Add_Resistance);//9
+            Grid_Add_Resistance.Children.Add(Resistance_Img_Top);//10
+            Grid_Add_Resistance.Children.Add(Pipe_Resist_In);//11
 
             this.Content = Grid_Add_Resistance;
+            this.MinHeight = 450;
+            this.MinWidth = 900;
+            this.MaxHeight = 450;
+            this.MaxWidth = 900;
             this.Title = "Местные сопротивления";
         }
 
@@ -112,6 +170,14 @@ namespace EasyPACT_Graphic
             First.Visibility = Visibility.Hidden;
             Second.Visibility = Visibility.Hidden;
             Third.Visibility = Visibility.Hidden;
+            if (First.Items.Count > 0)
+            {
+                First.Items.Clear();
+            }
+            if (Second.Items.Count > 0)
+            {
+                Second.Items.Clear();
+            }
 
             switch (Local_Resistance_In.SelectedIndex)
             {
@@ -127,6 +193,7 @@ namespace EasyPACT_Graphic
                     Third.Visibility = Visibility.Visible;
                     Second.Visibility = Visibility.Visible;
                     Second.Items.Add("м");
+                    Second.Items.Add("cм");
                     Second.Items.Add("мм");
                     Second.SelectedIndex = 0;
                     break;
@@ -151,6 +218,7 @@ namespace EasyPACT_Graphic
                     Second.Items.Add("30");
                     Second.Items.Add("50");
                     First.SelectedIndex = 0;
+                    Second.SelectedIndex = 0;
                     break;
                 case 5:
                     First.Visibility = Visibility.Visible;
@@ -200,6 +268,7 @@ namespace EasyPACT_Graphic
                     First.Items.Add("50");
                     First.SelectedIndex = 0;
                     break;
+                    /*
                 case 9:
                     First.Visibility = Visibility.Visible;
                     First.Items.Add("Условный проход,мм");
@@ -208,11 +277,11 @@ namespace EasyPACT_Graphic
                     First.Items.Add("300 и выше");
                     First.SelectedIndex = 0;
                     break;
-
+                    */
             }
         }
 
-        int a_r = 130;
+        int a_r = 172;
         int resistance_Count = 1;
         private void Add_New_Local_Resistance_Click(object sender, RoutedEventArgs e)
         {
@@ -228,27 +297,27 @@ namespace EasyPACT_Graphic
 
             MyLabel Local_Resistance_In_lbl = new MyLabel("Local_Resistance_In_lbl", 30, a_r, 0, 0, "Местные сопротивления:");
 
-            MyComboBox Local_Resistance_In = new MyComboBox("Local_Resistance_In_" + resistance_Count.ToString(), 124, 200, a_r, 0, 0);
+            MyComboBox Local_Resistance_In = new MyComboBox("Local_Resistance_In_" + resistance_Count.ToString(), 200, 200, a_r, 0, 0);
             Local_Resistance_In.Items.Add("Выберите сопротивление");
             Local_Resistance_In.Items.Add("Вход в трубу");
-            Local_Resistance_In.Items.Add("Выход и трубы");
+            Local_Resistance_In.Items.Add("Выход из трубы");
             Local_Resistance_In.Items.Add("Диафрагма");
             Local_Resistance_In.Items.Add("Отвод");
             Local_Resistance_In.Items.Add("Колено");
             Local_Resistance_In.Items.Add("Вентиль нормальный");
-            Local_Resistance_In.Items.Add("Вентиль прямоточный");
-            Local_Resistance_In.Items.Add("Кран пробочный");
-            Local_Resistance_In.Items.Add("Задвижка");
+            //Local_Resistance_In.Items.Add("Вентиль прямоточный");
+            //Local_Resistance_In.Items.Add("Кран пробочный");
+            //Local_Resistance_In.Items.Add("Задвижка");
             Local_Resistance_In.SelectedIndex = 0;
             Local_Resistance_In.SelectionChanged += Local_Resistance_In_SelectionChanged;
 
-            MyComboBox First = new MyComboBox("First_" + resistance_Count.ToString(), 100, 400, a_r, 0, 0);
+            MyComboBox First = new MyComboBox("First_" + resistance_Count.ToString(), 200, 410, a_r, 0, 0);
             First.Visibility = Visibility.Hidden;
 
-            MyComboBox Second = new MyComboBox("Second_" + resistance_Count.ToString(), 100, 510, a_r, 0, 0);
+            MyComboBox Second = new MyComboBox("Second_" + resistance_Count.ToString(), 200, 620, a_r, 0, 0);
             Second.Visibility = Visibility.Hidden;
 
-            MyTextBox Third = new MyTextBox("Third_" + resistance_Count.ToString(), 100, 400, a_r, 0, 0);
+            MyTextBox Third = new MyTextBox("Third_" + resistance_Count.ToString(), 200, 410, a_r, 0, 0);
             Third.Visibility = Visibility.Hidden;
             /*
             MyLabel Number_Local_Resistance_In_lbl = new MyLabel("Number_Local_Resistance_In_lbl", 334, a_r, 0, 0, "Количество:");
@@ -267,13 +336,19 @@ namespace EasyPACT_Graphic
             //Grid_Add_Resistance.Children.Add(Number_Local_Resistance_In);
             //Grid_Add_Resistance.Children.Add(Shtyk);
             a_r += 30;
-
-            if (a_r > 400)
+            /*
+            if (a_r > 300)
             {
                 hSBar.Visibility = Visibility.Visible;
-                hSBar.Maximum = a_r - 400;
+                hSBar.Maximum = a_r - 300;
             }
-                
+            */
+            if (resistance_Count == 7)
+            {
+                Add_New_Local_Resistance.Visibility = Visibility.Hidden;
+                MessageBox.Show("Купите монитор побольше!");
+            }
+
         }
 
         private void scroll(object sender, EventArgs e)
@@ -297,13 +372,16 @@ namespace EasyPACT_Graphic
             }
         }
 
+        int i = 1;
+        bool h = true;
         private void Next_3_Click(object sender, RoutedEventArgs e)
         {
             var Grid_Add_Resistance = this.Content as MyGrid;
-
-            for (int i = 1; i <= resistance_Count; i++)
+            
+            while (i <= resistance_Count)
             {
                 string res_str = "";
+                
                 var Local_Resistance_In = Grid_Add_Resistance.GetElementByName("Local_Resistance_In_" + i.ToString()) as MyComboBox;
                 res_str += Local_Resistance_In.SelectedIndex.ToString() + " ";
                 var First = Grid_Add_Resistance.GetElementByName("First_" + i.ToString()) as MyComboBox;
@@ -311,7 +389,16 @@ namespace EasyPACT_Graphic
                 var Third = Grid_Add_Resistance.GetElementByName("Third_" + i.ToString()) as MyTextBox;
                 if (First.Visibility == Visibility.Visible)
                 {
-                    res_str += First.SelectedValue;
+                    string k = "";
+                    if (Local_Resistance_In.SelectedIndex == 1)
+                        k += First.SelectedIndex + 1;
+                    else
+                        if (First.SelectedIndex != 0)
+                        {
+                            k += First.SelectedValue;
+                        }
+                    res_str += k;
+
                     if (Second.Visibility == Visibility.Visible)
                     {
                         res_str += " " + Second.SelectedValue;
@@ -321,10 +408,45 @@ namespace EasyPACT_Graphic
                 {
                     if (Third.Visibility == Visibility.Visible)
                     {
-                        res_str += Third.Text;
+                        double diam = 0;
+                        if (double.TryParse(Third.Text, out diam)) 
+                        {
+                            if (Second.SelectedIndex == 1)
+                            {
+                                diam /= 100;
+                            }
+                            if (Second.SelectedIndex == 2)
+                            {
+                                diam /= 1000;
+                            }
+                            res_str += Math.Pow(diam / lip_In.Pipeline.Diameter, 2).ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Введены неправильные значения");
+                        }
                     }
+                    else
+                    {
+                        res_str += " 1";
+                    }
+
+
                 }
-                lip_In.Pipeline.AddLocalResistance(res_str);
+                try
+                {
+                    Network.Get().VacuumLine.Pipeline.AddLocalResistance(res_str); // не вакуумлайн
+                    i++;
+                    h = true;
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка в параметрах местного сопротивления");
+                    h = false;
+                    break;
+                }
+
+                
 
                 /*
                 // убрать: задаем сеть
@@ -337,6 +459,16 @@ namespace EasyPACT_Graphic
                 //Network.Get().ForcingLine. обратиться к элементу сети
                 */
             }
+            if (h)
+            {
+                ResistanceOut rsout = new ResistanceOut(lip_In, lip_Out, Temperature_Out, NK_dou, VP);
+                rsout.Show();
+            }
+        }
+
+        private void Help_Add_Resistance_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Выбран пункт Справка в окне добавления МС");
         }
 
     }
