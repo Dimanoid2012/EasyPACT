@@ -180,13 +180,13 @@ namespace EasyPACT_Graphic
 
                 Name = "Window_Add_Liquid";
                 Content = Grid_Add_Liquid;
-                Width = 908;
-                Height = 450;
+                Uri iconUri = new Uri("C://EasyPACT/EasyPACT_Graphic/EasyPACT_Icon.jpg", UriKind.RelativeOrAbsolute);
+                this.Icon = BitmapFrame.Create(iconUri);
                 this.MinWidth = 908;
                 this.MaxWidth = 908;
                 this.MinHeight = 450;
                 this.MaxHeight = 450;
-                Title = "Добавление новой жидкости";
+                Title = "Добавление новой жидкости - EasyPACT";
             }
             
             List<double> ListFirstTemp = new List<double>();
@@ -391,7 +391,8 @@ namespace EasyPACT_Graphic
 
             private void Help_Add_Liquid_Click(object sender, RoutedEventArgs e)
             {
-                MessageBox.Show("Выбран пункт Помощь в добавлении новой жидкости");
+                HelpWindow hw1 = new HelpWindow();
+                hw1.Show();
             }
 
             private void Cancel_Add_Liquid_Click(object sender, RoutedEventArgs e)

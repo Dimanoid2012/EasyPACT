@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
+using System.Windows.Resources;
+using System.IO;
 
 namespace EasyPACT_Graphic
 {
@@ -39,39 +41,12 @@ namespace EasyPACT_Graphic
 
             MyLabel Task2 = new MyLabel("Task2", 50, 230, 0, 0, "по заданным арматуре и состояниям жидкости на входе и на выходе из системы", 14);
             Task2.FontWeight = FontWeights.Bold;
-            /*
-            MyLabel Choose_Task_lbl = new MyLabel("Choose_Task_lbl", 30, 175, 0, 0, "Выберите задачу, которую требуется решить:", 13);
-            RadioButton Choose_Task_First = new RadioButton()
-            {
-                Content = " Расчет жидкости на выходе из системы по заданным арматуре и состоянии жидкости на входе в систему",
-                //Height = 30,
-                Name = "Choose_Task_First",
-                Margin = new Thickness(50, 215, 0, 0),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                FontSize = 13,
-                FontWeight = FontWeights.Bold,
-                IsChecked = true
-            };
 
-            RadioButton Choose_Task_Second = new RadioButton()
-            {
-                Content = " Расчет теплообменного аппарата по заданным арматуре и состояниям жидкости на входе и на выходе из системы",
-                //Height = 16,
-                Name = "Choose_Task_Second",
-                Margin = new Thickness(50, 245, 0, 0),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                FontSize = 13,
-                FontWeight = FontWeights.Bold
-            };
-            */
             MyButton Next_0 = new MyButton("Next_0", 150, 0, 0, 20, 7, "Продолжить");
             Next_0.HorizontalAlignment = HorizontalAlignment.Right;
             Next_0.VerticalAlignment = VerticalAlignment.Bottom;
             Next_0.Background = Brushes.DarkGreen;
             Next_0.FontSize = 12;
-            //Next_0.FontWeight = FontWeights.Bold;
             Next_0.Foreground = Brushes.LightGray;
             Next_0.Click += Next_0_Click;
 
@@ -81,11 +56,6 @@ namespace EasyPACT_Graphic
             Help_Choose_Task.Background = Brushes.DarkGreen;
             Help_Choose_Task.FontSize = 10;
             Help_Choose_Task.Click += OpenCredits_Click;
-            /*
-            MyButton OpenCredits = new MyButton("OpenCredits", 100, 30, 300, 0, 0, "Разработчики");
-            OpenCredits.Background = Brushes.DarkGreen;
-            OpenCredits.Click += OpenCredits_Click;
-            */
 
             Image First_Img_Top = new Image()
             {
@@ -94,8 +64,7 @@ namespace EasyPACT_Graphic
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
                 Name = "First_Img_Top",
-                Margin = new Thickness(0, 0, 0, 0),
-                //Source = new BitmapSource(C:\EasyPACT\EasyPACT_Graphic\Images\favicon.gif)
+                Margin = new Thickness(0, 0, 0, 0)
             };
             
             BitmapImage First_Img_Top_bi = new BitmapImage();
@@ -111,8 +80,7 @@ namespace EasyPACT_Graphic
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
                 Name = "First_Img_Bottom",
-                Margin = new Thickness(0, 366, 0, 0),
-                //Source = new BitmapSource(C:\EasyPACT\EasyPACT_Graphic\Images\favicon.gif)
+                Margin = new Thickness(0, 366, 0, 0)
             };
 
             BitmapImage First_Img_Bottom_bi = new BitmapImage();
@@ -121,22 +89,6 @@ namespace EasyPACT_Graphic
             First_Img_Bottom_bi.EndInit();
             First_Img_Bottom.Source = First_Img_Bottom_bi;
             
-            Rectangle exampleRectangle = new Rectangle();
-
-            LinearGradientBrush grad = new LinearGradientBrush();
-            grad.StartPoint = new Point(0.5, 0.0);
-            grad.EndPoint = new Point(0.5, 1.0);
-            grad.GradientStops.Add(new GradientStop(Colors.White, 0.4));
-            //grad.GradientStops.Add(new GradientStop(Colors.DarkGreen, 1.0));
-            //grad.Opacity = 10.0;*/
-            /*
-            grad.GradientStops.Add(new GradientStop(Colors.Yellow, 0.4));
-            //grad.GradientStops.Add(new GradientStop(Colors.Orange, 0.5));
-            grad.GradientStops.Add(new GradientStop(Colors.Red, 1.0));
-            */
-
-            exampleRectangle.Fill = grad;
-
             Grid Hello_Window = new Grid();
             Hello_Window.Name = "Hello_Window";
             Hello_Window.Children.Add(Welcome);
@@ -147,12 +99,10 @@ namespace EasyPACT_Graphic
             Hello_Window.Children.Add(First_Img_Bottom);
             Hello_Window.Children.Add(Next_0);
             Hello_Window.Children.Add(Help_Choose_Task);
-            //Hello_Window.Children.Add(OpenCredits);
-
-
             this.Content = Hello_Window;
             this.Title = "Выбор решаемой задачи - EasyPACT";
-            this.Background = grad;
+            Uri iconUri = new Uri("C://EasyPACT/EasyPACT_Graphic/EasyPACT_Icon.jpg", UriKind.RelativeOrAbsolute);
+            this.Icon = BitmapFrame.Create(iconUri);
             this.Width = 908;
             this.Height = 450;
             this.MinWidth = 908;
@@ -166,12 +116,7 @@ namespace EasyPACT_Graphic
             Begin_Parameters bpm = new Begin_Parameters();
             bpm.Show();
         }
-        /*
-        private void Help_Choose_Task_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Выбран пункт Справка");
-        }
-        */
+
         private void OpenCredits_Click(object sender, RoutedEventArgs e)
         {
             Credits crd = new Credits();

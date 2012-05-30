@@ -32,10 +32,12 @@ namespace EasyPACT_Graphic
 
             MyTextBox proizv_txt = new MyTextBox("proizv_txt", 60, 560, 332, 0, 0);
 
-            MyButton proizv_but = new MyButton("", 100, 630, 330, 0, 0, "Добавить");
+            MyButton proizv_but = new MyButton("", 100, 630, 330, 0, 0, "Получить ответ");
+            proizv_but.Background = Brushes.DarkGreen;
+            proizv_but.Foreground = Brushes.LightGray;
+            proizv_but.Height = 23;
             proizv_but.Visibility = Visibility.Visible;
             proizv_but.Click += proizv_but_Click;
-
 
             MyLabel Machine = new MyLabel("Machine", 270, 130, 0, 0, "Требуемый насос", 15);
             Machine.FontWeight = FontWeights.Bold;
@@ -99,7 +101,6 @@ namespace EasyPACT_Graphic
             Next_last.VerticalAlignment = VerticalAlignment.Bottom;
             Next_last.Background = Brushes.DarkGreen;
             Next_last.FontSize = 12;
-            //Next_0.FontWeight = FontWeights.Bold;
             Next_last.Foreground = Brushes.LightGray;
             Next_last.Click += Next_last_Click;
 
@@ -110,10 +111,6 @@ namespace EasyPACT_Graphic
             Cred.FontSize = 10;
             Cred.Click += OpenCredits_Click;
 
-            
-            
-            
-            
             Grid ResultWindow = new MyGrid();
             ResultWindow.Name = "ResultWindow";
             ResultWindow.Children.Add(Result_Img_Top);//0
@@ -129,15 +126,14 @@ namespace EasyPACT_Graphic
             ResultWindow.Children.Add(proizv_txt);//10
             ResultWindow.Children.Add(proizv_but);//11
             
-
-
             this.Content = ResultWindow;
-            this.Title = "Ввод результатов - EasyPACT";
+            this.Title = "Вывод результатов - EasyPACT";
+            Uri iconUri = new Uri("C://EasyPACT/EasyPACT_Graphic/EasyPACT_Icon.jpg", UriKind.RelativeOrAbsolute);
+            this.Icon = BitmapFrame.Create(iconUri);
             this.MinWidth = 908;
             this.MaxWidth = 908;
             this.MinHeight = 450;
             this.MaxHeight = 450;
-
         }
 
         private void Next_last_Click(object sender, RoutedEventArgs e)
@@ -159,7 +155,6 @@ namespace EasyPACT_Graphic
             var TORes = ResultWindow.Children[6] as MyLabel;
             var proizv_but = ResultWindow.Children[11] as MyButton;
             
-            //double proizv_ch = 0;
             double result = 0;
             if (double.TryParse(proizv_txt.Text, out result))
             {
@@ -169,8 +164,6 @@ namespace EasyPACT_Graphic
                     MyLabel SpeedIn = new MyLabel("SpeedIn", 10, 180, 0, 0, "", 10);
 
                     MyLabel SpeedOut = new MyLabel("SpeedOut", 100, 100, 0, 0, "", 10);
-
-                    
 
                     proizv_but.Visibility = Visibility.Hidden;
                     proizv_txt.IsEnabled = false;
@@ -204,8 +197,6 @@ namespace EasyPACT_Graphic
             {
                 MessageBox.Show("Введите числовое значение производительности в кг/с");
             }
-            //Network.Get().SetProductivity(double.Parse(proizv_txt.Text));// это поле
-            
         }
 
     }

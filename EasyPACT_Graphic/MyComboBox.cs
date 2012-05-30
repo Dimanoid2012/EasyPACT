@@ -32,7 +32,6 @@ namespace EasyPACT_Graphic
         {
             Name = name;
             Width = width;
-            //Height = 23;
             Margin = new Thickness(a, b, c, d);
             HorizontalAlignment = HorizontalAlignment.Left;
             VerticalAlignment = VerticalAlignment.Top;

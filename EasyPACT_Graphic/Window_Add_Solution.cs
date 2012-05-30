@@ -46,6 +46,8 @@ namespace EasyPACT_Graphic
 
             MyButton Add_New_Compound = new MyButton("Liquid_Add", 200, 30, 180, 0, 0, "Добавление новой жидкости");
             Add_New_Compound.Height = 30;
+            Add_New_Compound.Background = Brushes.DarkGreen;
+            Add_New_Compound.Foreground = Brushes.LightGray;
             Add_New_Compound.Visibility = Visibility.Hidden;
             Add_New_Compound.Click += Add_New_Compound_Click;
 
@@ -122,7 +124,9 @@ namespace EasyPACT_Graphic
             //container_Solution.Children.Add(Cancel_Solution_Add);//6
 
             this.Content = container_Solution;
-            this.Title = "Добавление новой смеси";
+            this.Title = "Добавление новой смеси - EasyPACT";
+            Uri iconUri = new Uri("C://EasyPACT/EasyPACT_Graphic/EasyPACT_Icon.jpg", UriKind.RelativeOrAbsolute);
+            this.Icon = BitmapFrame.Create(iconUri);
             this.Width = 658;
             this.Height = 450;
             this.MinWidth = 658;
@@ -196,7 +200,8 @@ namespace EasyPACT_Graphic
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Выбран пункт Помощь в окне добавления новой смеси.");
+            HelpWindow hw1 = new HelpWindow();
+            hw1.Show();
         }
         /*
         private void Cancel_Solution_Add_Click(object sender, RoutedEventArgs e)

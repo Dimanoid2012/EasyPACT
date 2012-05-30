@@ -150,6 +150,8 @@ namespace EasyPACT_Graphic
             this.MinHeight = 460;
             this.MaxWidth = 458;
             this.MaxHeight = 460;
+            Uri iconUri = new Uri("C://EasyPACT/EasyPACT_Graphic/EasyPACT_Icon.jpg", UriKind.RelativeOrAbsolute);
+            this.Icon = BitmapFrame.Create(iconUri);
 
             this.Content = container_Credits;
             this.Title = "Информация о разработчиках - EasyPACT";

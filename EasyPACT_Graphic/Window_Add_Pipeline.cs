@@ -78,7 +78,7 @@ namespace EasyPACT_Graphic
             {
                 Material_In.Items.Add(a);
             }
-            Material_In.SelectedIndex = 0;
+            Material_In.SelectedIndex = 32;
 
             MyLabel Length_In_lbl = new MyLabel("Length_In_lbl_1", 30, 170, 0, 0, "Длина:");
 
@@ -145,7 +145,7 @@ namespace EasyPACT_Graphic
             {
                 Material_Out.Items.Add(a);
             }
-            Material_Out.SelectedIndex = 0;
+            Material_Out.SelectedIndex = 32;
 
             MyLabel Length_Out_lbl = new MyLabel("Length_In_lbl_1", 30, 300, 0, 0, "Длина:");
 
@@ -314,13 +314,13 @@ namespace EasyPACT_Graphic
             Grid_Add_Pipeline.Children.Add(Pipeline_Out_lbl);//37
 
             Content = Grid_Add_Pipeline;
-            this.Width = 908;
-            this.Height = 450;
+            Uri iconUri = new Uri("C://EasyPACT/EasyPACT_Graphic/EasyPACT_Icon.jpg", UriKind.RelativeOrAbsolute);
+            this.Icon = BitmapFrame.Create(iconUri);
             this.MinWidth = 908;
             this.MaxWidth = 908;
             this.MinHeight = 450;
             this.MaxHeight = 450;
-            Title = "Добавление нового трубопровода";
+            Title = "Добавление нового трубопровода - EasyPACT";
         }
 
         private void Next_2_Click(object sender, RoutedEventArgs e)
@@ -437,9 +437,13 @@ namespace EasyPACT_Graphic
 
         private void Help_Add_Pipeline_Click(object sender, RoutedEventArgs e)
         {
+            /*
             var Grid_Add_Pipeline = this.Content as MyGrid;
             var Help_Add_Pipeline = Grid_Add_Pipeline.Children[3] as MyButton;
             MessageBox.Show("Выбран пункт Справка в окне добавления всасывающего трубопровода");
+            */
+            HelpWindow hw1 = new HelpWindow();
+            hw1.Show();
         }
 
 

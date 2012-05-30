@@ -36,7 +36,7 @@ namespace EasyPACT_Graphic
             Grid Grid_Add_Resistance = new MyGrid();
             Grid_Add_Resistance.Name = "Grid_Add_Resistance";
 
-            MyLabel Pipe_Resist_In = new MyLabel("Pipe_Resist_In", 30, 100, 0, 0, "Всасывающий трубопровод", 14);
+            MyLabel Pipe_Resist_In = new MyLabel("Pipe_Resist_In", 30, 100, 0, 0, "Нагнетательный трубопровод", 14);
             Pipe_Resist_In.FontWeight = FontWeights.Bold;
 
             MyLabel Local_Resistance_In_lbl = new MyLabel("Local_Resistance_In_lbl", 30, 140, 0, 0, "Местное сопротивление:");
@@ -151,11 +151,13 @@ namespace EasyPACT_Graphic
             Grid_Add_Resistance.Children.Add(Pipe_Resist_In);//11
 
             this.Content = Grid_Add_Resistance;
+            Uri iconUri = new Uri("C://EasyPACT/EasyPACT_Graphic/EasyPACT_Icon.jpg", UriKind.RelativeOrAbsolute);
+            this.Icon = BitmapFrame.Create(iconUri);
             this.MinHeight = 450;
             this.MinWidth = 900;
             this.MaxHeight = 450;
             this.MaxWidth = 900;
-            this.Title = "Местные сопротивления";
+            this.Title = "Местные сопротивления - Нагнетательный трубопровод - EasyPACT";
         }
 
         private void Local_Resistance_In_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -468,7 +470,8 @@ namespace EasyPACT_Graphic
 
         private void Help_Add_Resistance_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Выбран пункт Справка в окне добавления МС");
+            HelpWindow hw1 = new HelpWindow();
+            hw1.Show();
         }
 
     }

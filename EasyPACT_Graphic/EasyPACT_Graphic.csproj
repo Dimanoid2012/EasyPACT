@@ -76,6 +76,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Credits.cs" />
+    <Compile Include="HelpWindow.cs" />
     <Compile Include="MyButton.cs" />
     <Compile Include="MyComboBox.cs" />
     <Compile Include="MyGrid.cs" />
@@ -196,6 +197,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="EasyPACT_Results.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="favicon.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EasyPACT_Icon.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
